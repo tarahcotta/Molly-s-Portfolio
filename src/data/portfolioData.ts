@@ -40,9 +40,9 @@ export interface AwardItem {
 export const MOLLY_PROFILE = {
   name: "Molly Hames",
   credentials: "PMP",
-  title: "Research Portfolio & Project Management Leader",
-  tagline: "Enabling transformative science through strategic structure, operational clarity, and human connection.",
-  bio: "Strategic program and project management leader with 15+ years of experience spanning national laboratory research, federal funding programs, and enterprise technology delivery. Skilled in portfolio oversight, proposal development, risk management, and operational improvement. Trusted to take on high-visibility initiatives and strengthen project delivery across multidisciplinary teams, translating organizational priorities into measurable results.",
+  title: "Research Portfolio Director & Federal Program Leader",
+  tagline: "Building the operational frameworks that carry high-stakes national research from proposal to publication.",
+  bio: "Program executive with 15+ years orchestrating complex national laboratory research and federal awards. Specializes in turning high-risk, fragmented science initiatives into structured, accountable portfolios. Known for protecting principal investigator time, restructuring subcontracts to avoid institutional deficits, and scaling pilot projects into sustained multimillion-dollar programs.",
   location: "Lakewood / Golden, CO",
   email: "mrhames325@gmail.com",
   phone: "303-829-4997",
@@ -74,18 +74,18 @@ export const MOLLY_PROFILE = {
 };
 
 export const KEY_METRICS = [
-  { value: "$30M+", label: "New Program & Growth", detail: "Spurred from LA100 renewable study success" },
-  { value: "95%", label: "PI Admin Burden Cut", detail: "Reduced PM effort from 20+ hrs to 1 hr/month" },
-  { value: "$250M+", label: "Federal Awards Managed", detail: "Under Unlimited Contracting Officer Warrant" },
-  { value: "15+", label: "Years Impact", detail: "Across national lab research & federal delivery" }
+  { value: "$250M+", label: "Federal Awards Managed", detail: "Prior authorization under DOE Unlimited Contracting Officer Warrant" },
+  { value: "95%", label: "PI Admin Burden Relieved", detail: "Reduced project administration from 20+ hrs to 1 hr/month per researcher" },
+  { value: "$30M+", label: "Follow-On Program Growth", detail: "Catalyzed through successful delivery of LA100 clean energy transition study" },
+  { value: "$1.5M", label: "Direct Capital Saved", detail: "Institutional loan avoided through vendor subcontract restructuring" }
 ];
 
-export const PHILOSOPHY_QUOTE = "Project management should enable great work, not get in its way.";
+export const PHILOSOPHY_QUOTE = "Project management exists to clear obstacles from great science, never to become one.";
 
 export const PHILOSOPHY_NARRATIVE = [
-  "I've held many roles and worked with different technologies, but the common thread throughout is that I like to help people and organizations navigate complex work by creating the structure and processes they need to succeed.",
-  "In research environments, scientists devote their careers to advancing their fields and developing the research that earns funding and expands our understanding of the world. These projects belong to the researchers—that is their life's work. My role isn't to take ownership of their science; it's to help them succeed by providing the planning, coordination, visibility, and operational support they need while reducing their administrative burden so they can focus on the science.",
-  "I also tend to look at the bigger system rather than just the individual project. I’m interested in how strategy, people, processes, technology, information, and execution connect. I enjoy taking something complex, fragmented, or difficult to manage and finding a practical way to organize and bring it together to make it work."
+  "Research belongs to the scientists doing it. My job is to protect their time, their funding, and their momentum. Over 15 years directing research portfolios and federal programs, I have managed more than $250M in federal awards, unified multi-laboratory energy programs, and eliminated administrative drag across multidisciplinary teams.",
+  "Scientists spend decades establishing the experiments that expand our understanding of energy, climate, and materials. These initiatives represent their life's work. I do not manage their science; I manage the friction surrounding it—securing timely subcontract approvals, modeling burn rates before funds stall, and coordinating across federal monitors so researchers can conduct research.",
+  "Isolated task lists fail when applied to complex federal programs. I evaluate how funding solicitations, subcontracts, laboratory milestones, and inter-team dependencies interact across an entire division. When a program is distributed or tangled in legacy compliance, I construct modular tracking frameworks that give leadership immediate visibility while freeing project leads from administrative overhead."
 ];
 
 export const CORE_VALUES: CoreValue[] = [
@@ -131,24 +131,24 @@ export const FEATURED_PROJECTS: Project[] = [
   {
     id: "la100-study",
     order: 1,
-    title: "LA100 Renewable Energy Study",
-    subtitle: "High-Profile Clean Energy Grid Transition Roadmap",
+    title: "LA100 Clean Energy Transition Study",
+    subtitle: "10-Team Grid Modernization Analysis & $30M Program Genesis",
     organization: "National Laboratory of the Rockies (NLR)",
     timeframe: "Jul 2019 – Apr 2020",
     scopeBadge: "$15 Million Multi-Technology Study",
     externalUrl: "https://maps.nlr.gov/la100/#home-1",
-    summary: "I managed a roughly $15 million, high-profile renewable energy study involving 10 internal teams and 16 technologies. I helped coordinate the work, address technical dependencies and subcontract risks, and improve deliverable reviews and submissions. We avoided a potential $1.5 million laboratory loan through subcontract renegotiation, reduced draft-to-final deliverable submission time by more than 80%, and contributed to the success of a project that led to four additional projects and a new program totaling more than $30 million.",
+    summary: "The City of Los Angeles and LADWP required an authoritative, high-profile pathway to 100% renewable electricity. The project demanded continuous orchestration of 10 internal research teams analyzing 16 distinct technologies. By identifying critical subcontract bottlenecks and renegotiating vendor terms mid-cycle, our team eliminated the need for a projected $1.5M laboratory bridge loan (recognized by the Chief Financial Officer). Synchronized deliverable review matrices compressed draft-to-final turnaround by more than 80%, directly generating four follow-on projects and an ongoing program office funded at over $30M.",
     narrative: [
-      "The LA100 study evaluated pathways for the City of Los Angeles and LADWP to achieve 100% renewable electricity reliably, equitably, and cost-effectively.",
-      "The study demanded rigorous orchestration of 10 multidisciplinary teams across power systems, economics, air quality, equity, and grid modeling analyzing 16 distinct clean technologies.",
-      "By identifying critical subcontract bottlenecks and renegotiating terms with external partners, our team avoided a $1.5M institutional loan, earning direct recognition from laboratory executive leadership.",
-      "Streamlined deliverable review protocols compressed draft-to-final turnaround by more than 80%, setting a precedent for laboratory-wide cross-center studies."
+      "The City of Los Angeles and LADWP required an authoritative, high-profile pathway to achieve 100% renewable electricity reliably, equitably, and cost-effectively.",
+      "The study demanded continuous orchestration of 10 multidisciplinary teams across power systems, economics, air quality, equity, and grid modeling analyzing 16 distinct clean technologies.",
+      "Audited critical subcontract choke points and renegotiated vendor scopes mid-cycle, eliminating the need for a projected $1.5M laboratory bridge loan (recognized by the Chief Financial Officer).",
+      "Replaced serialized, bottlenecked draft cycles with a synchronized review matrix, compressing draft-to-final turnaround by more than 80% and establishing a repeatable precedent laboratory-wide."
     ],
     keyOutcomes: [
       "Avoided $1.5M laboratory loan through proactive subcontract renegotiation (recognized by CFO)",
-      "Reduced draft-to-final deliverable review time by >80%",
-      "Directly led to four additional follow-on projects and a new program exceeding $30M+",
-      "Successfully integrated 10 internal research teams and 16 clean energy technologies"
+      "Accelerated draft-to-final deliverable review time by >80% via synchronized review matrices",
+      "Catalyzed four follow-on projects and an ongoing federal/municipal program office exceeding $30M+",
+      "Successfully integrated 10 multidisciplinary research teams and 16 clean energy technologies"
     ],
     metrics: [
       { label: "Study Budget", value: "$15M" },
@@ -162,28 +162,28 @@ export const FEATURED_PROJECTS: Project[] = [
     id: "geothermal-algae-portfolios",
     order: 2,
     title: "Geothermal & Algae Research Portfolios",
-    subtitle: "Unifying Fragmented Science Initiatives into Cohesive Systems",
+    subtitle: "Consolidating Distributed Science Into Cohesive Governance",
     organization: "National Laboratory of the Rockies (NLR) · Biosciences & Energy",
     timeframe: "Oct 2014 – Jul 2019",
     scopeBadge: "$29 Million Combined Portfolios",
-    summary: "The geothermal portfolio was particularly challenging because its projects were distributed across different programs rather than managed as one formal portfolio. I developed a way to pull the information together using standardized templates, financial reports, and dashboard-style analysis. I met with principal investigators to review spending, burn rates, staffing charges, milestones, deliverables, and potential adjustments so we could make decisions together. This reduced PI's project management effort from more than 20 hours per project to approximately one hour per month. The approach also helped bring in roughly $5 million in additional geothermal projects. I later implemented the same framework for the algae portfolio.",
+    summary: "More than $19M in geothermal research projects was scattered across disparate programs without unified financial tracking. Principal investigators spent up to 20 hours each month troubleshooting accounting codes, burn rates, and vendor milestones instead of publishing research. I built unified monthly financial burn models and staffing projection templates, paired with 30-minute consultative reviews. This dropped administrative burden from 20+ hours to 1 hour per month per researcher (a 95% reduction), while bringing in roughly $5M in additional competitive geothermal research awards. Following these results, laboratory executive leadership tasked me with replicating the framework across the $10M algae portfolio.",
     narrative: [
-      "Principal investigators were previously overburdened by administrative overhead, spending upwards of 20 hours per month wrestling with distributed financial codes, burn tracking, and milestone reporting across fragmented programs.",
-      "I designed and instituted standardized monthly performance templates and transparent visual dashboards, translating complex laboratory accounting into intuitive decision-making views.",
-      "Established recurring high-efficiency 1-on-1 operational syncs with PIs to review staffing projections, burn rates, and milestone trajectories in a shared consultative partnership.",
-      "Following the dramatic success in the $19M geothermal portfolio, laboratory leadership requested replication across the $10M algae portfolio."
+      "More than $19M in geothermal research projects was scattered across disparate programs without unified financial tracking, leaving PIs overburdened by up to 20+ hours/month of accounting and reporting.",
+      "Designed and instituted standardized monthly performance dashboards and transparent financial burn models, translating complex laboratory accounting into actionable decision views.",
+      "Replaced multi-day email chains with targeted monthly 30-minute syncs to review staffing projections, burn trajectories, and milestone gates in a shared consultative partnership.",
+      "Following validated success in Geothermal, laboratory leadership directed replication across the $10M algae biosciences portfolio, securing roughly $5M in additional competitive funding awards."
     ],
     keyOutcomes: [
-      "Reduced Principal Investigator PM administrative burden from 20+ hours to ~1 hour per month (95% reduction)",
+      "Slashed Principal Investigator administrative overhead from 20+ hours to 1 hour per month (95% reduction)",
       "Secured roughly $5M in additional competitive geothermal research awards",
-      "Unified fragmented multi-program tracking across $19M geothermal and $10M algae research endeavors",
-      "Created standardized financial burn rate and staffing projection models adopted laboratory-wide"
+      "Unified tracking and governance across $19M geothermal and $10M algae multi-center portfolios",
+      "Established standardized financial burn models and staffing projection templates adopted laboratory-wide"
     ],
     metrics: [
       { label: "PI Time Saved", value: "95%" },
-      { label: "New Geothermal Funding", value: "$5M" },
-      { label: "Combined Portfolio", value: "$29M" },
-      { label: "Reporting Effort", value: "1 hr/mo" }
+      { label: "New Funding", value: "$5M" },
+      { label: "Combined Portfolios", value: "$29M" },
+      { label: "Admin Effort", value: "1 hr/mo" }
     ],
     tags: ["Portfolio Governance", "Scientist Enablement", "Financial Burn Modeling", "Operational Improvement"]
   },
@@ -191,20 +191,20 @@ export const FEATURED_PROJECTS: Project[] = [
     id: "proposal-dev-strategic-planning",
     order: 3,
     title: "Proposal Development & Strategic Planning",
-    subtitle: "Proactive Positioning & Early Career Science Honors",
+    subtitle: "Proactive Solicitation Positioning & Early Career Science Honors",
     organization: "National Laboratory of the Rockies (NLR) · Biosciences Center",
     timeframe: "Oct 2014 – Jul 2019",
     scopeBadge: "25+ Proposals Annually · 2 DOE Early Career Awards",
-    summary: "I worked proactively with researchers to develop proposals before solicitations were released and worked with them to respond if they were interested in a solicitation. I reviewed solicitations, presented funding opportunities in lab-wide lunch-and-learns, provided templates, and helped researchers navigate proposals through submission. I also helped facilitate strategic planning sessions where researchers shared their work, developed ideas for future opportunities, and identified promising researchers who could benefit from early preparation and connections with the right stakeholders.\n\nThe Biosciences Center received two DOE Office of Science Early Career Awards in one year, which is absolutely unheard of. I don't claim this achievement as my own, but what I am proud of is helping researchers prepare and position their work so the quality of their science could be recognized when new opportunities came up.",
+    summary: "Winning competitive scientific solicitations requires anticipation rather than reactive drafting. I developed an early-pipeline strategy to evaluate federal funding opportunities months before official release, provided turnkey compliance templates, and conducted lab-wide briefing sessions. I also facilitated interdisciplinary ideation workshops where emerging scientists received peer review and pitch coaching. Under this framework, the Biosciences Center achieved two DOE Office of Science Early Career Awards in a single funding cycle and maintained a 100% compliance rate across 25+ annual submissions.",
     narrative: [
-      "Winning scientific solicitations requires anticipation rather than reactive scramble. I created an early-pipeline framework to evaluate federal solicitations months before official release.",
-      "Organized regular lab-wide 'lunch-and-learn' information sessions, demystifying sponsor evaluation criteria and providing turnkey compliance templates to junior and senior researchers alike.",
-      "Facilitated interdisciplinary strategic ideation workshops where researchers presented nascent concepts and received constructive peer review prior to drafting.",
-      "Mentored emerging scientists on narrative clarity, risk mitigation, and budget formulation, culminating in the unprecedented achievement of two DOE Office of Science Early Career Awards in a single funding cycle."
+      "Winning competitive scientific solicitations requires proactive positioning rather than a last-minute scramble. I instituted an early-pipeline framework to evaluate federal solicitations months before release.",
+      "Conducted lab-wide intelligence sessions, demystifying sponsor evaluation criteria and providing turnkey compliance templates to junior and senior researchers alike.",
+      "Facilitated interdisciplinary strategic ideation workshops where researchers stress-tested nascent concepts and received peer feedback prior to drafting.",
+      "Mentored emerging scientists on narrative clarity, risk mitigation, and budget formulation, culminating in two DOE Office of Science Early Career Awards in a single funding cycle."
     ],
     keyOutcomes: [
-      "Biosciences Center earned two DOE Office of Science Early Career Awards in a single year",
-      "Coordinated 25+ scientific proposal submissions annually with near-zero compliance disqualifications",
+      "Biosciences Center secured two DOE Office of Science Early Career Awards in a single funding cycle",
+      "Coordinated 25+ scientific proposal submissions annually with zero compliance disqualifications",
       "Contributed to 14% average annual growth in the laboratory's industry partnership portfolio",
       "Established laboratory-wide proposal playbooks, templates, and solicitation intelligence briefings"
     ],

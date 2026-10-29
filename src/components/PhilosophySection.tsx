@@ -32,22 +32,22 @@ export const PhilosophySection: React.FC = () => {
               The Researcher-First Approach
             </h3>
             <p className="text-sm text-[#2F3437] leading-[1.6]">
-              In research institutions, scientists devote their careers to advancing their disciplines and securing the discoveries that advance human understanding.
+              Scientists spend decades establishing the experiments that expand our understanding of energy, climate, and materials.
             </p>
             <p className="text-sm text-[#2F3437] leading-[1.6]">
-              These projects belong to the researchers—<strong className="font-semibold text-[#111111]">that is their life&apos;s work.</strong> My role is not to claim ownership of their science; it is to ensure their success by providing planning, financial visibility, inter-agency coordination, and operational structure while stripping away administrative drag so they can concentrate on the science.
+              These initiatives represent their life&apos;s work. I do not manage their science; I manage the friction surrounding it—securing timely subcontract approvals, modeling burn rates before funds stall, and coordinating across federal monitors so researchers can conduct research.
             </p>
           </div>
 
           <div className="space-y-3">
             <h3 className="font-serif text-xl font-medium text-[#111111] tracking-[-0.02em]">
-              Systems Thinking &amp; Organizational Architecture
+              Systems Architecture &amp; Delivery
             </h3>
             <p className="text-sm text-[#2F3437] leading-[1.6]">
-              I evaluate the broader organizational system rather than just the isolated task. I examine how strategy, personnel, workflows, technology, and governance interlock.
+              Isolated task lists fail when applied to complex federal programs. I evaluate how funding solicitations, subcontracts, laboratory milestones, and inter-team dependencies interact across an entire division.
             </p>
             <p className="text-sm text-[#2F3437] leading-[1.6]">
-              I find genuine satisfaction in taking initiatives that are fragmented, high-risk, or difficult to govern and designing a practical, sustainable framework that brings them into cohesion.
+              When a program is distributed, high-risk, or tangled in legacy compliance, I construct modular tracking frameworks that give executive leadership immediate visibility while freeing project leads from administrative drag.
             </p>
           </div>
         </div>

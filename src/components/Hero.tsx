@@ -25,12 +25,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
 
             {/* Editorial Serif Display Headline */}
             <h1 id="hero-heading" className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-medium tracking-[-0.03em] text-[#111111] leading-[1.15]" style={{ textWrap: 'balance' }}>
-              Enabling transformative science through strategic structure, operational clarity, and human connection.
+              Building the operational frameworks that carry high-stakes national research from proposal to publication.
             </h1>
 
             {/* Body Prose in Public Sans with line-height 1.6 */}
             <p className="text-base text-[#2F3437] leading-[1.6] max-w-xl">
-              I partner with researchers, engineering directors, and institutional leaders to guide high-stakes, multimillion-dollar portfolios from operational ambiguity to measurable scientific breakthroughs. One of my core beliefs is that <strong className="font-semibold text-[#111111]">project management should enable great work, not get in its way.</strong>
+              Research belongs to the scientists doing it. My job is to protect their time, their funding, and their momentum. Over 15 years directing research portfolios and federal programs, I have managed more than $250M in federal awards, unified multi-laboratory energy programs, and eliminated administrative drag across multidisciplinary teams.
             </p>
 
             {/* Spot Pastel Tags & Status Badges (Section 4 & 5 Protocol) */}
