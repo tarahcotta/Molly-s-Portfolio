@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Project } from '../data/portfolioData';
 import { X, ExternalLink, CheckCircle2 } from 'lucide-react';
 
@@ -8,6 +8,9 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -15,6 +18,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
     if (project) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
+      setTimeout(() => closeButtonRef.current?.focus(), 50);
     }
     return () => {
       document.body.style.overflow = 'unset';
@@ -26,15 +30,17 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#16181b]/50 backdrop-blur-xs animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#16181b]/60 backdrop-blur-xs animate-in fade-in duration-150"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
       <div 
-        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white border border-[#d8d5cd] p-6 sm:p-8 space-y-6 text-[#16181b] shadow-xl"
+        ref={modalRef}
+        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white border border-[#d8d5cd] p-6 sm:p-8 space-y-6 text-[#16181b] shadow-xl focus:outline-none"
         onClick={(e) => e.stopPropagation()}
+        tabIndex={-1}
       >
         {/* Header Bar */}
         <div className="flex items-start justify-between gap-4 border-b border-[#e5e3df] pb-5">
@@ -44,7 +50,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               <span aria-hidden="true" className="text-[#c4c0b6]">/</span>
               <span>{project.timeframe}</span>
             </div>
-            <h2 id="modal-title" className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-[#16181b]">
+            <h2 id="modal-title" className="text-2xl sm:text-3xl font-bold tracking-tight text-[#16181b]">
               {project.title}
             </h2>
             <p className="text-xs font-mono uppercase tracking-wider text-[#73716b]">
@@ -53,11 +59,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           </div>
 
           <button
+            ref={closeButtonRef}
             onClick={onClose}
-            className="p-1.5 text-[#73716b] hover:text-[#16181b] transition-colors cursor-pointer shrink-0"
-            aria-label="Close modal"
+            className="min-w-[44px] min-h-[44px] p-2 text-[#73716b] hover:text-[#16181b] transition-colors cursor-pointer shrink-0 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
+            aria-label="Close dossier"
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5" aria-hidden="true" />
           </button>
         </div>
 
@@ -105,7 +112,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           <ul className="space-y-2">
             {project.keyOutcomes.map((outcome, i) => (
               <li key={i} className="flex items-start gap-2.5 text-sm text-[#16181b]">
-                <CheckCircle2 className="w-4 h-4 text-[#14294a] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#14294a] shrink-0 mt-0.5" aria-hidden="true" />
                 <span>{outcome}</span>
               </li>
             ))}
@@ -117,7 +124,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs font-mono text-[#5a5853]">
             {project.tags.map((tag, i) => (
               <span key={i} className="inline-flex items-center gap-1.5">
-                <span className="w-1 h-1 bg-[#14294a]" />
+                <span className="w-1 h-1 bg-[#14294a]" aria-hidden="true" />
                 <span>{tag}</span>
               </span>
             ))}
@@ -131,10 +138,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               href={project.externalUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-mono font-medium uppercase tracking-wider text-white bg-[#14294a] hover:bg-[#0f203b] transition-colors"
+              aria-label={`Visit official study portal for ${project.title} (opens in new tab)`}
+              className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 text-xs font-mono font-medium uppercase tracking-wider text-white bg-[#14294a] hover:bg-[#0f203b] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
             >
               <span>Visit Official Study Portal</span>
-              <ExternalLink className="w-3.5 h-3.5" />
+              <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
             </a>
           ) : (
             <div className="text-xs font-mono text-[#73716b]">
@@ -144,7 +152,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
           <button
             onClick={onClose}
-            className="px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider text-[#16181b] bg-[#fcfbf9] hover:bg-[#f2efe9] border border-[#d2cec5] transition-colors cursor-pointer"
+            className="min-h-[44px] px-4 py-2 text-xs font-mono uppercase tracking-wider text-[#16181b] bg-[#fcfbf9] hover:bg-[#f2efe9] border border-[#d2cec5] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
           >
             <span>Close Dossier</span>
           </button>

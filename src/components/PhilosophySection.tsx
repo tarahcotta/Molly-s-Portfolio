@@ -3,21 +3,21 @@ import { CORE_VALUES, PHILOSOPHY_QUOTE } from '../data/portfolioData';
 
 export const PhilosophySection: React.FC = () => {
   return (
-    <section id="philosophy" className="py-16 md:py-24 bg-[#fcfbf9] border-b border-[#e5e3df]">
+    <section id="philosophy" aria-labelledby="philosophy-heading" className="py-16 md:py-24 bg-[#fcfbf9] border-b border-[#e5e3df]">
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Header */}
         <div className="max-w-3xl mb-12 space-y-2">
           <div className="text-xs font-mono font-semibold uppercase tracking-wider text-[#73716b]">
             Operating Philosophy
           </div>
-          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#16181b]" style={{ textWrap: 'balance' }}>
+          <h2 id="philosophy-heading" className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#16181b]" style={{ textWrap: 'balance' }}>
             Structure That Enables, Not Bureaucracy That Constrains
           </h2>
         </div>
 
         {/* The Core Institutional Tenet */}
         <div className="mb-14 border-l-2 border-[#14294a] pl-6 sm:pl-8 py-2">
-          <blockquote className="font-serif text-2xl sm:text-3xl font-semibold tracking-tight text-[#16181b] leading-snug">
+          <blockquote className="text-2xl sm:text-3xl font-bold tracking-tight text-[#16181b] leading-snug">
             &ldquo;{PHILOSOPHY_QUOTE}&rdquo;
           </blockquote>
           <p className="text-xs font-mono uppercase tracking-widest text-[#73716b] mt-3">
@@ -28,7 +28,7 @@ export const PhilosophySection: React.FC = () => {
         {/* Two-Column Monograph */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-14 pb-14 border-b border-[#e5e3df]">
           <div className="space-y-3">
-            <h3 className="font-serif text-xl font-bold text-[#16181b]">
+            <h3 className="text-xl font-bold text-[#16181b]">
               The Researcher-First Approach
             </h3>
             <p className="text-sm sm:text-base text-[#373a3e] leading-relaxed">
@@ -40,7 +40,7 @@ export const PhilosophySection: React.FC = () => {
           </div>
 
           <div className="space-y-3">
-            <h3 className="font-serif text-xl font-bold text-[#16181b]">
+            <h3 className="text-xl font-bold text-[#16181b]">
               Systems Thinking &amp; Organizational Architecture
             </h3>
             <p className="text-sm sm:text-base text-[#373a3e] leading-relaxed">
@@ -55,7 +55,7 @@ export const PhilosophySection: React.FC = () => {
         {/* Six Operating Standards */}
         <div className="pt-12 space-y-8">
           <div>
-            <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#16181b]">
+            <h3 className="text-xl sm:text-2xl font-bold text-[#16181b]">
               Six Working Principles
             </h3>
             <p className="text-xs font-mono text-[#73716b] mt-1">
@@ -69,7 +69,7 @@ export const PhilosophySection: React.FC = () => {
                 <div className="text-xs font-mono font-semibold text-[#14294a]">
                   Section 0{idx + 1}
                 </div>
-                <h4 className="font-serif text-base font-bold text-[#16181b] leading-snug">
+                <h4 className="text-base font-bold text-[#16181b] leading-snug">
                   {val.title}
                 </h4>
                 <div className="text-xs font-mono text-[#73716b]">

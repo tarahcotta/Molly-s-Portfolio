@@ -12,11 +12,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenResume }) 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(MOLLY_PROFILE.email);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setTimeout(() => setCopied(false), 2500);
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-[#fcfbf9] border-b border-[#e5e3df]">
+    <section id="contact" aria-labelledby="contact-heading" className="py-16 md:py-24 bg-[#fcfbf9] border-b border-[#e5e3df]">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Column */}
@@ -24,7 +24,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenResume }) 
             <div className="text-xs font-mono font-semibold uppercase tracking-wider text-[#73716b]">
               Direct Communication
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#16181b]" style={{ textWrap: 'balance' }}>
+            <h2 id="contact-heading" className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#16181b]" style={{ textWrap: 'balance' }}>
               Initiate a Dialogue
             </h2>
             <p className="text-sm sm:text-base text-[#373a3e] leading-relaxed max-w-xl">
@@ -36,26 +36,33 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenResume }) 
                 href={MOLLY_PROFILE.linkedInUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-mono font-medium uppercase tracking-wider text-white bg-[#14294a] hover:bg-[#0f203b] rounded-xs transition-colors shadow-2xs"
+                aria-label="Connect with Molly Hames on LinkedIn (opens in new tab)"
+                className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 text-xs font-mono font-medium uppercase tracking-wider text-white bg-[#14294a] hover:bg-[#0f203b] rounded-xs transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
               >
                 <span>Connect via LinkedIn</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
               </a>
 
               <a
                 href={`mailto:${MOLLY_PROFILE.email}`}
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-mono font-medium uppercase tracking-wider text-[#16181b] bg-white hover:bg-[#f2efe9] border border-[#d2cec5] rounded-xs transition-colors"
+                aria-label={`Send direct email to ${MOLLY_PROFILE.email}`}
+                className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 text-xs font-mono font-medium uppercase tracking-wider text-[#16181b] bg-white hover:bg-[#f2efe9] border border-[#d2cec5] rounded-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
               >
-                <Mail className="w-3.5 h-3.5 text-[#73716b]" />
+                <Mail className="w-3.5 h-3.5 text-[#73716b]" aria-hidden="true" />
                 <span>Send Direct Email</span>
               </a>
 
               <button
                 onClick={onOpenResume}
-                className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono font-medium uppercase tracking-wider text-[#5a5853] hover:text-[#16181b] transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 py-2 text-xs font-mono font-medium uppercase tracking-wider text-[#5a5853] hover:text-[#16181b] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
               >
                 <span>Curriculum Vitae</span>
               </button>
+            </div>
+
+            {/* Screen reader live notification for copy action */}
+            <div role="status" aria-live="polite" className="sr-only">
+              {copied ? "Email address copied to clipboard." : ""}
             </div>
           </div>
 
@@ -72,10 +79,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenResume }) 
                   href={MOLLY_PROFILE.linkedInUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-[#16181b] hover:text-[#14294a] hover:underline flex items-center gap-1"
+                  aria-label="Molly Hames LinkedIn Profile (opens in new tab)"
+                  className="font-medium text-[#16181b] hover:text-[#14294a] hover:underline flex items-center gap-1 py-1"
                 >
                   <span>{MOLLY_PROFILE.linkedInDisplay}</span>
-                  <ArrowUpRight className="w-3 h-3 text-[#73716b]" />
+                  <ArrowUpRight className="w-3 h-3 text-[#73716b]" aria-hidden="true" />
                 </a>
               </div>
 
@@ -84,17 +92,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenResume }) 
                 <div className="flex items-center gap-2">
                   <a
                     href={`mailto:${MOLLY_PROFILE.email}`}
-                    className="font-mono text-[#16181b] hover:underline"
+                    className="font-mono text-[#16181b] hover:underline py-1"
                   >
                     {MOLLY_PROFILE.email}
                   </a>
                   <button
                     onClick={handleCopyEmail}
-                    className="p-1 text-[#73716b] hover:text-[#16181b] transition-colors cursor-pointer"
-                    title="Copy email"
-                    aria-label="Copy email"
+                    className="min-w-[36px] min-h-[36px] p-1.5 text-[#73716b] hover:text-[#16181b] transition-colors cursor-pointer flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
+                    title="Copy email address"
+                    aria-label="Copy email address to clipboard"
                   >
-                    {copied ? <Check className="w-3.5 h-3.5 text-emerald-700" /> : <Copy className="w-3.5 h-3.5" />}
+                    {copied ? <Check className="w-3.5 h-3.5 text-emerald-700" aria-hidden="true" /> : <Copy className="w-3.5 h-3.5" aria-hidden="true" />}
                   </button>
                 </div>
               </div>
@@ -103,7 +111,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenResume }) 
                 <span className="text-[#73716b] font-mono text-xs">Phone</span>
                 <a
                   href={`tel:${MOLLY_PROFILE.phone.replace(/[^0-9]/g, '')}`}
-                  className="font-mono text-[#16181b] hover:underline"
+                  className="font-mono text-[#16181b] hover:underline py-1"
                 >
                   {MOLLY_PROFILE.phone}
                 </a>
