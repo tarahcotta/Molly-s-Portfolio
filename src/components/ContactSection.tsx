@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MOLLY_PROFILE } from '../data/portfolioData';
-import { Mail, ArrowUpRight, Copy, Check } from 'lucide-react';
+import { MailIcon, CopyIcon, CheckIcon, ArrowUpRightIcon } from './Icons';
 
 interface ContactSectionProps {
   onOpenResume: () => void;
@@ -16,18 +16,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenResume }) 
   };
 
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="py-16 md:py-24 bg-[#fcfbf9] border-b border-[#e5e3df]">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="contact" aria-labelledby="contact-heading" className="py-20 md:py-28 bg-[#FBFBFA] border-b border-[#EAEAEA]">
+      <div className="max-w-5xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Column */}
           <div className="lg:col-span-7 space-y-4">
-            <div className="text-xs font-mono font-semibold uppercase tracking-wider text-[#73716b]">
-              Direct Communication
+            <div className="text-xs font-mono uppercase tracking-wider text-[#787774]">
+              Direct Contact
             </div>
-            <h2 id="contact-heading" className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#16181b]" style={{ textWrap: 'balance' }}>
+            <h2 id="contact-heading" className="font-serif text-2xl sm:text-3xl lg:text-4xl font-medium tracking-[-0.025em] text-[#111111]" style={{ textWrap: 'balance' }}>
               Initiate a Dialogue
             </h2>
-            <p className="text-sm sm:text-base text-[#373a3e] leading-relaxed max-w-xl">
+            <p className="text-sm text-[#2F3437] leading-[1.6] max-w-xl">
               Whether you are preparing a high-visibility scientific solicitation, aligning complex multidisciplinary programs, or evaluating operational structure across national laboratories, I welcome direct conversation.
             </p>
 
@@ -37,26 +37,27 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenResume }) 
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Connect with Molly Hames on LinkedIn (opens in new tab)"
-                className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 text-xs font-mono font-medium uppercase tracking-wider text-white bg-[#14294a] hover:bg-[#0f203b] rounded-xs transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
+                className="inline-flex items-center gap-1.5 min-h-[42px] px-4 py-2 text-xs font-mono uppercase tracking-wider text-[#FFFFFF] bg-[#111111] hover:bg-[#333333] active:scale-[0.98] rounded-[4px] transition-all shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
               >
                 <span>Connect via LinkedIn</span>
-                <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                <ArrowUpRightIcon className="w-3.5 h-3.5" />
               </a>
 
               <a
                 href={`mailto:${MOLLY_PROFILE.email}`}
                 aria-label={`Send direct email to ${MOLLY_PROFILE.email}`}
-                className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 text-xs font-mono font-medium uppercase tracking-wider text-[#16181b] bg-white hover:bg-[#f2efe9] border border-[#d2cec5] rounded-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
+                className="inline-flex items-center gap-1.5 min-h-[42px] px-4 py-2 text-xs font-mono uppercase tracking-wider text-[#111111] bg-[#FFFFFF] hover:bg-[#F7F6F3] active:scale-[0.98] border border-[#EAEAEA] rounded-[4px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
               >
-                <Mail className="w-3.5 h-3.5 text-[#73716b]" aria-hidden="true" />
+                <MailIcon className="w-3.5 h-3.5 text-[#787774]" />
                 <span>Send Direct Email</span>
               </a>
 
               <button
                 onClick={onOpenResume}
-                className="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 py-2 text-xs font-mono font-medium uppercase tracking-wider text-[#5a5853] hover:text-[#16181b] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
+                className="inline-flex items-center gap-1.5 min-h-[42px] px-3.5 py-2 text-xs font-mono uppercase tracking-wider text-[#787774] hover:text-[#111111] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
               >
                 <span>Curriculum Vitae</span>
+                <kbd className="hidden sm:inline-block">PDF</kbd>
               </button>
             </div>
 
@@ -66,60 +67,60 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenResume }) 
             </div>
           </div>
 
-          {/* Right Column: Architectural Ledger Table */}
-          <div className="lg:col-span-5 bg-white p-6 border border-[#e5e3df] shadow-2xs space-y-4">
-            <div className="text-[11px] font-mono font-semibold uppercase tracking-widest text-[#73716b] border-b border-[#e5e3df] pb-2">
+          {/* Right Column: Bento Channel Table */}
+          <div className="lg:col-span-5 bg-[#FFFFFF] p-6 border border-[#EAEAEA] rounded-[8px] space-y-4 hover:shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all">
+            <div className="text-[11px] font-mono uppercase tracking-widest text-[#787774] border-b border-[#EAEAEA] pb-2">
               Official Channels
             </div>
 
-            <div className="divide-y divide-[#f2efe9] text-xs sm:text-sm">
+            <div className="divide-y divide-[#EAEAEA] text-xs sm:text-sm">
               <div className="py-2.5 flex items-center justify-between gap-4">
-                <span className="text-[#73716b] font-mono text-xs">LinkedIn</span>
+                <span className="text-[#787774] font-mono text-xs">LinkedIn</span>
                 <a
                   href={MOLLY_PROFILE.linkedInUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Molly Hames LinkedIn Profile (opens in new tab)"
-                  className="font-medium text-[#16181b] hover:text-[#14294a] hover:underline flex items-center gap-1 py-1"
+                  className="font-medium text-[#111111] hover:underline flex items-center gap-1 py-1"
                 >
                   <span>{MOLLY_PROFILE.linkedInDisplay}</span>
-                  <ArrowUpRight className="w-3 h-3 text-[#73716b]" aria-hidden="true" />
+                  <ArrowUpRightIcon className="w-3 h-3 text-[#787774]" />
                 </a>
               </div>
 
               <div className="py-2.5 flex items-center justify-between gap-4">
-                <span className="text-[#73716b] font-mono text-xs">Email</span>
+                <span className="text-[#787774] font-mono text-xs">Email</span>
                 <div className="flex items-center gap-2">
                   <a
                     href={`mailto:${MOLLY_PROFILE.email}`}
-                    className="font-mono text-[#16181b] hover:underline py-1"
+                    className="font-mono text-[#111111] hover:underline py-1"
                   >
                     {MOLLY_PROFILE.email}
                   </a>
                   <button
                     onClick={handleCopyEmail}
-                    className="min-w-[36px] min-h-[36px] p-1.5 text-[#73716b] hover:text-[#16181b] transition-colors cursor-pointer flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
+                    className="min-w-[34px] min-h-[34px] p-1.5 text-[#787774] hover:text-[#111111] hover:bg-[#F7F6F3] rounded-[4px] border border-[#EAEAEA] transition-colors cursor-pointer flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
                     title="Copy email address"
                     aria-label="Copy email address to clipboard"
                   >
-                    {copied ? <Check className="w-3.5 h-3.5 text-emerald-700" aria-hidden="true" /> : <Copy className="w-3.5 h-3.5" aria-hidden="true" />}
+                    {copied ? <CheckIcon className="w-3.5 h-3.5 text-[#346538]" /> : <CopyIcon className="w-3.5 h-3.5" />}
                   </button>
                 </div>
               </div>
 
               <div className="py-2.5 flex items-center justify-between gap-4">
-                <span className="text-[#73716b] font-mono text-xs">Phone</span>
+                <span className="text-[#787774] font-mono text-xs">Phone</span>
                 <a
                   href={`tel:${MOLLY_PROFILE.phone.replace(/[^0-9]/g, '')}`}
-                  className="font-mono text-[#16181b] hover:underline py-1"
+                  className="font-mono text-[#111111] hover:underline py-1"
                 >
                   {MOLLY_PROFILE.phone}
                 </a>
               </div>
 
               <div className="py-2.5 flex items-center justify-between gap-4">
-                <span className="text-[#73716b] font-mono text-xs">Jurisdiction</span>
-                <span className="text-[#16181b] font-mono text-xs">{MOLLY_PROFILE.location}</span>
+                <span className="text-[#787774] font-mono text-xs">Jurisdiction</span>
+                <span className="text-[#111111] font-mono text-xs">{MOLLY_PROFILE.location}</span>
               </div>
             </div>
           </div>

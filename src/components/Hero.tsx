@@ -1,6 +1,6 @@
 import React from 'react';
 import { MOLLY_PROFILE, KEY_METRICS } from '../data/portfolioData';
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { ArrowDownIcon, ArrowUpRightIcon } from './Icons';
 
 interface HeroProps {
   onOpenResume: () => void;
@@ -8,55 +8,52 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
   return (
-    <section id="top" aria-labelledby="hero-heading" className="pt-12 pb-16 md:pt-16 md:pb-20 border-b border-[#e5e3df] bg-[#fcfbf9]">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="top" aria-labelledby="hero-heading" className="pt-16 pb-20 md:pt-24 md:pb-28 border-b border-[#EAEAEA] bg-[#FBFBFA]">
+      <div className="max-w-5xl mx-auto px-6">
         {/* Split Hero */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Typographic Hierarchy */}
           <div className="lg:col-span-7 space-y-6">
-            {/* Archival Classification Bar */}
-            <div className="flex flex-wrap items-center gap-2 text-xs font-mono tracking-wider uppercase text-[#73716b]">
-              <span className="font-semibold text-[#16181b]">Executive Dossier</span>
-              <span aria-hidden="true" className="text-[#c4c0b6]">/</span>
-              <span>National Laboratory Leadership</span>
-              <span aria-hidden="true" className="text-[#c4c0b6]">/</span>
+            {/* Meta-tag Kicker */}
+            <div className="flex flex-wrap items-center gap-2 text-xs font-mono tracking-wider uppercase text-[#787774]">
+              <span className="font-medium text-[#111111]">Document 01</span>
+              <span aria-hidden="true" className="text-[#D0D0CE]">/</span>
+              <span>National Laboratory Research</span>
+              <span aria-hidden="true" className="text-[#D0D0CE]">/</span>
               <span>Golden, CO</span>
             </div>
 
-            {/* Display Headline in Crisp Sans */}
-            <h1 id="hero-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#16181b] leading-[1.12]" style={{ textWrap: 'balance' }}>
+            {/* Editorial Serif Display Headline */}
+            <h1 id="hero-heading" className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-medium tracking-[-0.03em] text-[#111111] leading-[1.15]" style={{ textWrap: 'balance' }}>
               Enabling transformative science through strategic structure, operational clarity, and human connection.
             </h1>
 
-            {/* Body Prose in Public Sans */}
-            <p className="text-base sm:text-lg text-[#373a3e] leading-relaxed max-w-2xl">
-              I partner with researchers, engineering directors, and institutional leaders to guide high-stakes, multimillion-dollar portfolios from operational ambiguity to measurable scientific breakthroughs. One of my core beliefs is that <strong className="font-semibold text-[#16181b]">project management should enable great work, not get in its way.</strong>
+            {/* Body Prose in Public Sans with line-height 1.6 */}
+            <p className="text-base text-[#2F3437] leading-[1.6] max-w-xl">
+              I partner with researchers, engineering directors, and institutional leaders to guide high-stakes, multimillion-dollar portfolios from operational ambiguity to measurable scientific breakthroughs. One of my core beliefs is that <strong className="font-semibold text-[#111111]">project management should enable great work, not get in its way.</strong>
             </p>
 
-            {/* Credential Dossier Strip */}
-            <div className="pt-1 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs font-mono text-[#5a5853]">
-              <span className="inline-flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 bg-[#14294a]" aria-hidden="true" />
-                <span>PMP Certified (Active since 2015)</span>
+            {/* Spot Pastel Tags & Status Badges (Section 4 & 5 Protocol) */}
+            <div className="pt-1 flex flex-wrap items-center gap-2 text-xs font-mono uppercase tracking-[0.05em]">
+              <span className="bg-[#EDF3EC] text-[#346538] px-2.5 py-1 rounded-full border border-[#346538]/10">
+                PMP Certified · Active
               </span>
-              <span className="inline-flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 bg-[#14294a]" aria-hidden="true" />
-                <span>DOE Q Clearance (Active)</span>
+              <span className="bg-[#E1F3FE] text-[#1F6C9F] px-2.5 py-1 rounded-full border border-[#1F6C9F]/10">
+                DOE Q Clearance · Active
               </span>
-              <span className="inline-flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 bg-[#14294a]" aria-hidden="true" />
-                <span>NLR President&apos;s Award</span>
+              <span className="bg-[#FBF3DB] text-[#956400] px-2.5 py-1 rounded-full border border-[#956400]/10">
+                President&apos;s Award
               </span>
             </div>
 
-            {/* Actions */}
+            {/* Actions (Section 5: Solid #111111, radius 4px to 6px, active scale 0.98) */}
             <div className="pt-3 flex flex-wrap items-center gap-3">
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 min-h-[44px] px-4 py-2.5 text-xs font-mono font-medium uppercase tracking-wider text-white bg-[#14294a] hover:bg-[#0f203b] rounded-xs transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a] focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-2 min-h-[42px] px-4 py-2 text-xs font-mono uppercase tracking-wider text-[#FFFFFF] bg-[#111111] hover:bg-[#333333] active:scale-[0.98] rounded-[4px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
               >
-                <span>View Key Portfolios</span>
-                <ArrowDown className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>View Portfolios</span>
+                <ArrowDownIcon className="w-3.5 h-3.5" />
               </a>
 
               <a
@@ -64,25 +61,39 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Molly Hames on LinkedIn (opens in new tab)"
-                className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2.5 text-xs font-mono font-medium uppercase tracking-wider text-[#16181b] bg-white hover:bg-[#f2efe9] border border-[#d2cec5] rounded-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a] focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-1.5 min-h-[42px] px-4 py-2 text-xs font-mono uppercase tracking-wider text-[#111111] bg-[#FFFFFF] hover:bg-[#F7F6F3] active:scale-[0.98] border border-[#EAEAEA] rounded-[4px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
               >
                 <span>LinkedIn</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#73716b]" aria-hidden="true" />
+                <ArrowUpRightIcon className="w-3.5 h-3.5 text-[#787774]" />
               </a>
 
               <button
                 onClick={onOpenResume}
-                className="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 py-2.5 text-xs font-mono font-medium uppercase tracking-wider text-[#5a5853] hover:text-[#16181b] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a] focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-1.5 min-h-[42px] px-3.5 py-2 text-xs font-mono uppercase tracking-wider text-[#787774] hover:text-[#111111] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
               >
-                <span>Curriculum Vitae (PDF)</span>
+                <span>Curriculum Vitae</span>
+                <kbd className="hidden sm:inline-block">PDF</kbd>
               </button>
             </div>
           </div>
 
-          {/* Right Column: Matte Portrait Frame */}
+          {/* Right Column: Faux-OS Window Chrome Frame (Section 5 Protocol) */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="w-full max-w-xs sm:max-w-sm bg-white p-2.5 border border-[#d8d5cd] shadow-xs">
-              <div className="overflow-hidden bg-[#ebe8e1]">
+            <div className="w-full max-w-xs sm:max-w-sm bg-[#FFFFFF] border border-[#EAEAEA] rounded-[8px] overflow-hidden transition-all duration-200 hover:shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+              {/* macOS Window Controls Top Bar */}
+              <div className="px-3.5 py-2.5 bg-[#FFFFFF] border-b border-[#EAEAEA] flex items-center justify-between">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#EAEAEA] border border-[#D0D0CE]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#EAEAEA] border border-[#D0D0CE]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#EAEAEA] border border-[#D0D0CE]" />
+                </div>
+                <span className="text-[10px] font-mono uppercase tracking-wider text-[#787774]">
+                  molly_hames_dossier.pdf
+                </span>
+              </div>
+
+              {/* Photo */}
+              <div className="bg-[#F7F6F3]">
                 <img
                   src={MOLLY_PROFILE.headshotPath}
                   alt="Molly Hames, PMP — Research Portfolio & Project Management Leader"
@@ -91,16 +102,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
                   loading="eager"
                 />
               </div>
-              <div className="pt-3 pb-1 px-1 flex items-baseline justify-between border-t border-[#edebe6] mt-2">
+
+              {/* Window Footer Meta */}
+              <div className="p-3 bg-[#FFFFFF] border-t border-[#EAEAEA] flex items-baseline justify-between text-xs">
                 <div>
-                  <div className="text-sm font-bold text-[#16181b]">
+                  <div className="font-semibold text-[#111111]">
                     {MOLLY_PROFILE.name}, {MOLLY_PROFILE.credentials}
                   </div>
-                  <div className="text-[11px] font-mono text-[#73716b]">
+                  <div className="text-[11px] font-mono text-[#787774]">
                     Portfolio &amp; Program Leader
                   </div>
                 </div>
-                <span className="text-[11px] font-mono uppercase text-[#8c8880]">
+                <span className="text-[11px] font-mono uppercase text-[#787774]">
                   NLR · Golden, CO
                 </span>
               </div>
@@ -108,18 +121,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
           </div>
         </div>
 
-        {/* Quantified Research Impact Ledger */}
-        <div className="mt-14 pt-8 border-t border-[#e5e3df]">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+        {/* Bento Box Quantitative Metrics Ledger Strip */}
+        <div className="mt-16 pt-8 border-t border-[#EAEAEA]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {KEY_METRICS.map((metric, idx) => (
-              <div key={idx} className="space-y-1">
-                <div className="text-2xl sm:text-3xl font-mono font-semibold tracking-tight text-[#16181b] tabular-nums">
+              <div 
+                key={idx} 
+                className="bg-[#FFFFFF] border border-[#EAEAEA] rounded-[8px] p-5 sm:p-6 transition-all duration-200 hover:shadow-[0_2px_8px_rgba(0,0,0,0.04)] space-y-1"
+              >
+                <div className="text-2xl sm:text-3xl font-mono font-medium tracking-tight text-[#111111] tabular-nums">
                   {metric.value}
                 </div>
-                <div className="text-xs font-mono font-semibold uppercase tracking-wider text-[#14294a]">
+                <div className="text-xs font-mono uppercase tracking-wider text-[#1F6C9F]">
                   {metric.label}
                 </div>
-                <div className="text-xs text-[#5a5853] leading-snug">
+                <div className="text-xs text-[#787774] leading-snug">
                   {metric.detail}
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Project } from '../data/portfolioData';
-import { X, ExternalLink, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { CloseIcon, ExternalLinkIcon, CheckIcon, ChevronLeftIcon, ChevronRightIcon } from './Icons';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -68,7 +68,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#16181b]/60 backdrop-blur-xs animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#111111]/45 backdrop-blur-[2px] animate-in fade-in duration-150"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -76,7 +76,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
     >
       <div 
         ref={modalRef}
-        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white border border-[#d8d5cd] p-6 sm:p-8 space-y-6 text-[#16181b] shadow-xl focus:outline-none"
+        className="relative w-full max-w-3xl max-h-[90vh] flex flex-col bg-[#FFFFFF] border border-[#EAEAEA] rounded-[8px] overflow-hidden text-[#111111] focus:outline-none"
         onClick={(e) => e.stopPropagation()}
         tabIndex={-1}
       >
@@ -85,69 +85,80 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           {liveAnnouncement}
         </div>
 
-        {/* Header Bar */}
-        <div className="flex items-start justify-between gap-4 border-b border-[#e5e3df] pb-5">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2 text-xs font-mono text-[#73716b] uppercase tracking-wider">
-              <span className="font-semibold text-[#14294a]">{project.organization}</span>
-              <span aria-hidden="true" className="text-[#c4c0b6]">/</span>
+        {/* Header Bar - Pinned Top Zone */}
+        <div className="shrink-0 bg-[#FBFBFA] border-b border-[#EAEAEA] px-6 sm:px-8 py-5 space-y-3">
+          {/* Top Utility Row */}
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-xs font-mono text-[#787774] uppercase tracking-wider">
+              <span className="font-semibold text-[#111111]">{project.organization}</span>
+              <span aria-hidden="true" className="text-[#D0D0CE]">/</span>
               <span>{project.timeframe}</span>
             </div>
-            <h2 id="modal-title" className="text-2xl sm:text-3xl font-bold tracking-tight text-[#16181b]">
+
+            <div className="flex items-center gap-2 shrink-0">
+              {/* Sequential Carousel Navigation */}
+              {allProjects.length > 1 && (
+                <div className="flex items-center gap-1.5 text-xs font-mono text-[#787774] mr-1 pr-2 sm:border-r sm:border-[#EAEAEA]">
+                  <button
+                    onClick={handlePrev}
+                    disabled={!hasPrev}
+                    aria-label="Previous case study"
+                    className="min-w-[32px] min-h-[32px] p-1.5 rounded-[4px] border border-[#EAEAEA] bg-[#FFFFFF] hover:bg-[#F7F6F3] active:scale-[0.98] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
+                  >
+                    <ChevronLeftIcon className="w-3.5 h-3.5" />
+                  </button>
+
+                  <span className="px-1.5 text-[11px] tabular-nums text-[#111111] font-medium">
+                    0{currentIndex + 1} / 0{allProjects.length}
+                  </span>
+
+                  <button
+                    onClick={handleNext}
+                    disabled={!hasNext}
+                    aria-label="Next case study"
+                    className="min-w-[32px] min-h-[32px] p-1.5 rounded-[4px] border border-[#EAEAEA] bg-[#FFFFFF] hover:bg-[#F7F6F3] active:scale-[0.98] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
+                  >
+                    <ChevronRightIcon className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              )}
+
+              <kbd className="hidden sm:inline-block text-[10px] text-[#787774] font-mono px-1.5 py-0.5 rounded-[4px] border border-[#EAEAEA] bg-[#FFFFFF]">
+                Esc
+              </kbd>
+
+              <button
+                ref={closeButtonRef}
+                onClick={onClose}
+                className="min-w-[36px] min-h-[36px] p-1.5 text-[#787774] hover:text-[#111111] hover:bg-[#FFFFFF] border border-transparent hover:border-[#EAEAEA] rounded-[4px] transition-colors cursor-pointer shrink-0 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
+                aria-label="Close dossier"
+              >
+                <CloseIcon className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Title Row */}
+          <div>
+            <h2 id="modal-title" className="text-2xl sm:text-3xl font-serif font-normal text-[#111111] leading-tight">
               {project.title}
             </h2>
-            <p className="text-xs font-mono uppercase tracking-wider text-[#73716b]">
+            <p className="text-xs font-mono uppercase tracking-wider text-[#787774] mt-1">
               {project.subtitle}
             </p>
           </div>
-
-          <div className="flex items-center gap-2 shrink-0">
-            {/* Sequential Carousel Navigation */}
-            {allProjects.length > 1 && (
-              <div className="hidden sm:flex items-center gap-1.5 mr-2 pr-3 border-r border-[#e5e3df] text-xs font-mono text-[#73716b]">
-                <button
-                  onClick={handlePrev}
-                  disabled={!hasPrev}
-                  aria-label="Previous case study"
-                  className="min-w-[36px] min-h-[36px] p-1.5 rounded-xs border border-[#d2cec5] hover:bg-[#f2efe9] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
-                >
-                  <ChevronLeft className="w-4 h-4" aria-hidden="true" />
-                </button>
-
-                <span className="px-1 text-[11px] tabular-nums">
-                  0{currentIndex + 1} / 0{allProjects.length}
-                </span>
-
-                <button
-                  onClick={handleNext}
-                  disabled={!hasNext}
-                  aria-label="Next case study"
-                  className="min-w-[36px] min-h-[36px] p-1.5 rounded-xs border border-[#d2cec5] hover:bg-[#f2efe9] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
-                >
-                  <ChevronRight className="w-4 h-4" aria-hidden="true" />
-                </button>
-              </div>
-            )}
-
-            <button
-              ref={closeButtonRef}
-              onClick={onClose}
-              className="min-w-[44px] min-h-[44px] p-2 text-[#73716b] hover:text-[#16181b] transition-colors cursor-pointer shrink-0 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
-              aria-label="Close dossier"
-            >
-              <X className="w-5 h-5" aria-hidden="true" />
-            </button>
-          </div>
         </div>
 
-        {/* Impact Balance Sheet */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 bg-[#fcfbf9] border border-[#e5e3df]">
+        {/* Modal Scrollable Body */}
+        <div className="flex-1 overflow-y-auto px-6 sm:px-8 py-6 space-y-6 text-[#111111]">
+          {/* Impact Balance Sheet */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 bg-[#F7F6F3] border border-[#EAEAEA] rounded-[6px]">
           {project.metrics.map((metric, i) => (
             <div key={i} className="space-y-0.5">
-              <div className="text-xl sm:text-2xl font-mono font-semibold text-[#16181b] tabular-nums">
+              <div className="text-xl sm:text-2xl font-mono font-medium text-[#111111] tabular-nums">
                 {metric.value}
               </div>
-              <div className="text-xs text-[#5a5853] font-medium">
+              <div className="text-xs text-[#787774] font-medium leading-tight">
                 {metric.label}
               </div>
             </div>
@@ -156,20 +167,20 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
         {/* Executive Summary */}
         <div className="space-y-2">
-          <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#73716b]">
+          <h3 className="text-xs font-mono font-medium uppercase tracking-wider text-[#787774]">
             Dossier Summary
           </h3>
-          <p className="text-sm sm:text-base text-[#373a3e] leading-relaxed whitespace-pre-line bg-[#fcfbf9] p-4 border border-[#edebe6]">
+          <p className="text-sm sm:text-base text-[#2F3437] leading-relaxed whitespace-pre-line bg-[#FBFBFA] p-4 border border-[#EAEAEA] rounded-[6px]">
             {project.summary}
           </p>
         </div>
 
         {/* Strategic Context */}
         <div className="space-y-2">
-          <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#73716b]">
+          <h3 className="text-xs font-mono font-medium uppercase tracking-wider text-[#787774]">
             Context &amp; Execution Framework
           </h3>
-          <div className="space-y-2 text-sm sm:text-base text-[#373a3e] leading-relaxed">
+          <div className="space-y-2 text-sm sm:text-base text-[#2F3437] leading-relaxed">
             {project.narrative.map((para, i) => (
               <p key={i}>{para}</p>
             ))}
@@ -178,13 +189,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
         {/* Measurable Outcomes */}
         <div className="space-y-2">
-          <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#73716b]">
+          <h3 className="text-xs font-mono font-medium uppercase tracking-wider text-[#787774]">
             Key Outcomes &amp; Deliverables
           </h3>
           <ul className="space-y-2">
             {project.keyOutcomes.map((outcome, i) => (
-              <li key={i} className="flex items-start gap-2.5 text-sm text-[#16181b]">
-                <CheckCircle2 className="w-4 h-4 text-[#14294a] shrink-0 mt-0.5" aria-hidden="true" />
+              <li key={i} className="flex items-start gap-2.5 text-sm text-[#111111]">
+                <CheckIcon className="w-3.5 h-3.5 text-[#346538] shrink-0 mt-1" />
                 <span>{outcome}</span>
               </li>
             ))}
@@ -192,19 +203,20 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         </div>
 
         {/* Competencies */}
-        <div className="pt-2 border-t border-[#edebe6]">
-          <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs font-mono text-[#5a5853]">
+        <div className="pt-2 border-t border-[#EAEAEA]">
+          <div className="flex flex-wrap gap-2 text-xs font-mono text-[#2F3437]">
             {project.tags.map((tag, i) => (
-              <span key={i} className="inline-flex items-center gap-1.5">
-                <span className="w-1 h-1 bg-[#14294a]" aria-hidden="true" />
-                <span>{tag}</span>
+              <span key={i} className="inline-flex items-center px-2 py-0.5 rounded-[4px] bg-[#F7F6F3] border border-[#EAEAEA]">
+                {tag}
               </span>
             ))}
           </div>
         </div>
 
-        {/* Footer actions */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#e5e3df]">
+        </div>
+
+        {/* Footer actions - Pinned Bottom Zone */}
+        <div className="shrink-0 flex flex-wrap items-center justify-between gap-4 px-6 sm:px-8 py-4 border-t border-[#EAEAEA] bg-[#FBFBFA]">
           <div className="flex items-center gap-3">
             {project.externalUrl ? (
               <a
@@ -212,44 +224,22 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Visit official study portal for ${project.title} (opens in new tab)`}
-                className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 text-xs font-mono font-medium uppercase tracking-wider text-white bg-[#14294a] hover:bg-[#0f203b] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
+                className="inline-flex items-center gap-1.5 min-h-[38px] px-4 py-2 text-xs font-mono font-medium uppercase tracking-wider text-[#FFFFFF] bg-[#111111] hover:bg-[#333333] active:scale-[0.98] rounded-[4px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
               >
                 <span>Visit Official Study Portal</span>
-                <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                <ExternalLinkIcon className="w-3.5 h-3.5" />
               </a>
             ) : (
-              <div className="text-xs font-mono text-[#73716b]">
+              <div className="text-xs font-mono text-[#787774]">
                 Conducted at {project.organization}
               </div>
             )}
           </div>
 
-          <div className="flex items-center gap-3">
-            {/* Mobile Carousel Controls */}
-            {allProjects.length > 1 && (
-              <div className="flex sm:hidden items-center gap-2 text-xs font-mono">
-                <button
-                  onClick={handlePrev}
-                  disabled={!hasPrev}
-                  className="min-h-[44px] px-3 border border-[#d2cec5] disabled:opacity-30"
-                  aria-label="Previous project"
-                >
-                  Prev
-                </button>
-                <button
-                  onClick={handleNext}
-                  disabled={!hasNext}
-                  className="min-h-[44px] px-3 border border-[#d2cec5] disabled:opacity-30"
-                  aria-label="Next project"
-                >
-                  Next
-                </button>
-              </div>
-            )}
-
+          <div className="flex items-center gap-2">
             <button
               onClick={onClose}
-              className="min-h-[44px] px-4 py-2 text-xs font-mono uppercase tracking-wider text-[#16181b] bg-[#fcfbf9] hover:bg-[#f2efe9] border border-[#d2cec5] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
+              className="min-h-[38px] px-4 py-2 text-xs font-mono uppercase tracking-wider text-[#111111] bg-[#FFFFFF] hover:bg-[#F7F6F3] border border-[#EAEAEA] rounded-[4px] active:scale-[0.98] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
             >
               <span>Close Dossier</span>
             </button>

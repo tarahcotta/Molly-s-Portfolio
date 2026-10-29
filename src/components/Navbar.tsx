@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MOLLY_PROFILE } from '../data/portfolioData';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { MenuIcon, CloseIcon, ArrowUpRightIcon } from './Icons';
 
 interface NavbarProps {
   onOpenResume: () => void;
@@ -11,38 +11,25 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
   const [activeSection, setActiveSection] = useState<string>('top');
   const [scrollProgress, setScrollProgress] = useState<number>(0);
 
-  const sectionMeta: Record<string, string> = {
-    top: 'Overview',
-    projects: 'Portfolios',
-    philosophy: 'Principles',
-    experience: 'Record',
-    contact: 'Contact',
-  };
-
   useEffect(() => {
     const handleScroll = () => {
-      // Track reading progress percentage
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (totalHeight > 0) {
-        const progress = Math.min(100, Math.max(0, (window.scrollY / totalHeight) * 100));
-        setScrollProgress(progress);
+        setScrollProgress(Math.min(100, Math.max(0, (window.scrollY / totalHeight) * 100)));
       }
 
-      // Immediate bottom check for contact section
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
         setActiveSection('contact');
         return;
       }
 
-      // Section position detection
-      const sectionIds = ['contact', 'experience', 'philosophy', 'projects', 'top'];
-      const scrollPosition = window.scrollY + 180;
+      const sections = ['contact', 'experience', 'philosophy', 'projects', 'top'];
+      const scrollPosition = window.scrollY + 140;
 
-      for (const sectionId of sectionIds) {
+      for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
         if (el) {
-          const top = el.offsetTop;
-          if (scrollPosition >= top) {
+          if (scrollPosition >= el.offsetTop) {
             setActiveSection(sectionId);
             break;
           }
@@ -56,49 +43,36 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-[#fcfbf9]/95 backdrop-blur-xs border-b border-[#e5e3df]">
-      {/* Target element: header inner container with active section information */}
-      <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between gap-8">
-        {/* Zone 1: Brand Wordmark + Live Breadcrumb Section Status */}
+    <header className="sticky top-0 z-40 bg-[#FBFBFA]/95 backdrop-blur-xs border-b border-[#EAEAEA]">
+      <div className="max-w-5xl mx-auto px-6 py-3.5 flex items-center justify-between gap-6">
+        {/* Zone 1: Brand Wordmark */}
         <div className="flex items-center gap-3 shrink-0">
           <a 
             href="#top" 
-            className="group inline-flex items-baseline gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a] focus-visible:ring-offset-2 rounded-xs"
+            className="group inline-flex items-baseline gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded-xs"
             aria-label="Molly Hames, PMP — Back to top"
           >
-            <span className="text-base font-bold tracking-tight text-[#16181b] group-hover:text-[#14294a] transition-colors">
+            <span className="text-sm font-semibold tracking-tight text-[#111111]">
               {MOLLY_PROFILE.name}
             </span>
-            <span className="text-[11px] font-mono tracking-widest uppercase text-[#73716b]">
+            <span className="text-[11px] font-mono tracking-wider uppercase text-[#787774]">
               {MOLLY_PROFILE.credentials}
             </span>
           </a>
-
-          {/* Dynamic Active Section Indicator attached to brand lockup */}
-          {activeSection !== 'top' && (
-            <div className="flex items-center gap-2 pl-3 border-l border-[#d8d5cd] animate-in fade-in duration-200">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#73716b] hidden sm:inline">
-                Section:
-              </span>
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#14294a] bg-[#edeae3] border border-[#d2cec5] px-2 py-0.5 rounded-xs">
-                {sectionMeta[activeSection] || activeSection}
-              </span>
-            </div>
-          )}
         </div>
 
-        {/* Zone 2: 4 Single-Line Text Links with Prominent Active Pill Indication */}
+        {/* Zone 2: Editorial Navigation Links */}
         <nav 
           aria-label="Primary navigation"
-          className="hidden md:flex items-center gap-2 text-xs font-mono uppercase tracking-wider"
+          className="hidden md:flex items-center gap-1 text-xs font-mono uppercase tracking-wider"
         >
           <a 
             href="#projects" 
             aria-current={activeSection === 'projects' ? 'location' : undefined}
-            className={`px-3 py-1.5 rounded-xs transition-all whitespace-nowrap shrink-0 ${
+            className={`px-2.5 py-1.5 rounded-[4px] transition-all whitespace-nowrap shrink-0 ${
               activeSection === 'projects'
-                ? 'bg-[#14294a] text-white font-bold shadow-2xs'
-                : 'text-[#5a5853] hover:text-[#16181b] hover:bg-[#f2efe9]'
+                ? 'bg-[#111111] text-[#FFFFFF] font-medium'
+                : 'text-[#787774] hover:text-[#111111] hover:bg-[#F7F6F3]'
             }`}
           >
             Portfolios
@@ -106,10 +80,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
           <a 
             href="#philosophy" 
             aria-current={activeSection === 'philosophy' ? 'location' : undefined}
-            className={`px-3 py-1.5 rounded-xs transition-all whitespace-nowrap shrink-0 ${
+            className={`px-2.5 py-1.5 rounded-[4px] transition-all whitespace-nowrap shrink-0 ${
               activeSection === 'philosophy'
-                ? 'bg-[#14294a] text-white font-bold shadow-2xs'
-                : 'text-[#5a5853] hover:text-[#16181b] hover:bg-[#f2efe9]'
+                ? 'bg-[#111111] text-[#FFFFFF] font-medium'
+                : 'text-[#787774] hover:text-[#111111] hover:bg-[#F7F6F3]'
             }`}
           >
             Principles
@@ -117,10 +91,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
           <a 
             href="#experience" 
             aria-current={activeSection === 'experience' ? 'location' : undefined}
-            className={`px-3 py-1.5 rounded-xs transition-all whitespace-nowrap shrink-0 ${
+            className={`px-2.5 py-1.5 rounded-[4px] transition-all whitespace-nowrap shrink-0 ${
               activeSection === 'experience'
-                ? 'bg-[#14294a] text-white font-bold shadow-2xs'
-                : 'text-[#5a5853] hover:text-[#16181b] hover:bg-[#f2efe9]'
+                ? 'bg-[#111111] text-[#FFFFFF] font-medium'
+                : 'text-[#787774] hover:text-[#111111] hover:bg-[#F7F6F3]'
             }`}
           >
             Record
@@ -128,10 +102,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
           <a 
             href="#contact" 
             aria-current={activeSection === 'contact' ? 'location' : undefined}
-            className={`px-3 py-1.5 rounded-xs transition-all whitespace-nowrap shrink-0 ${
+            className={`px-2.5 py-1.5 rounded-[4px] transition-all whitespace-nowrap shrink-0 ${
               activeSection === 'contact'
-                ? 'bg-[#14294a] text-white font-bold shadow-2xs'
-                : 'text-[#5a5853] hover:text-[#16181b] hover:bg-[#f2efe9]'
+                ? 'bg-[#111111] text-[#FFFFFF] font-medium'
+                : 'text-[#787774] hover:text-[#111111] hover:bg-[#F7F6F3]'
             }`}
           >
             Contact
@@ -141,45 +115,39 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
             target="_blank" 
             rel="noopener noreferrer"
             aria-label="Molly Hames on LinkedIn (opens in new tab)"
-            className="inline-flex items-center gap-1 text-[#5a5853] hover:text-[#16181b] hover:bg-[#f2efe9] px-3 py-1.5 rounded-xs transition-all whitespace-nowrap shrink-0 ml-2"
+            className="inline-flex items-center gap-1 text-[#787774] hover:text-[#111111] hover:bg-[#F7F6F3] px-2.5 py-1.5 rounded-[4px] transition-all whitespace-nowrap shrink-0 ml-1"
           >
             <span>LinkedIn</span>
-            <ArrowUpRight className="w-3 h-3 opacity-60" aria-hidden="true" />
+            <ArrowUpRightIcon className="w-3 h-3 opacity-60" />
           </a>
         </nav>
 
-        {/* Zone 3: Single Primary Action */}
-        <div className="hidden md:flex items-center shrink-0">
+        {/* Zone 3: Primary Action (Section 5: solid #111111, radius 4px to 6px, scale(0.98)) */}
+        <div className="hidden md:flex items-center gap-2 shrink-0">
           <button
             onClick={onOpenResume}
-            className="px-3.5 py-1.5 text-xs font-mono font-medium tracking-wider uppercase text-[#16181b] bg-white hover:bg-[#f2efe9] active:bg-[#e8e4dc] border border-[#d2cec5] rounded-xs transition-colors cursor-pointer shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a] focus-visible:ring-offset-2"
+            className="px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider text-[#FFFFFF] bg-[#111111] hover:bg-[#333333] active:scale-[0.98] rounded-[4px] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
           >
             Curriculum Vitae
           </button>
         </div>
 
-        {/* Mobile controls & active status */}
+        {/* Mobile controls */}
         <div className="flex md:hidden items-center gap-2">
-          {activeSection !== 'top' && (
-            <span className="text-[11px] font-mono font-bold uppercase text-[#14294a] bg-[#edeae3] border border-[#d2cec5] px-2 py-0.5 rounded-xs truncate max-w-[90px]">
-              {sectionMeta[activeSection]}
-            </span>
-          )}
-
           <button
             onClick={onOpenResume}
-            className="min-h-[40px] px-2.5 py-1 text-xs font-mono uppercase text-[#16181b] border border-[#d2cec5] rounded-xs flex items-center justify-center cursor-pointer"
+            className="min-h-[38px] px-2.5 py-1 text-xs font-mono uppercase text-[#FFFFFF] bg-[#111111] rounded-[4px] flex items-center justify-center cursor-pointer"
             aria-label="View Curriculum Vitae"
           >
             CV
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="min-w-[40px] min-h-[40px] p-2 text-[#5a5853] hover:text-[#16181b] rounded-xs flex items-center justify-center cursor-pointer"
+            className="min-w-[38px] min-h-[38px] p-2 text-[#2F3437] hover:text-[#111111] rounded-[4px] border border-[#EAEAEA] flex items-center justify-center cursor-pointer"
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
+            {mobileMenuOpen ? <CloseIcon className="w-4 h-4" /> : <MenuIcon className="w-4 h-4" />}
           </button>
         </div>
       </div>
@@ -188,14 +156,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
       {mobileMenuOpen && (
         <nav 
           aria-label="Mobile navigation"
-          className="md:hidden border-t border-[#e5e3df] bg-[#fcfbf9] px-6 py-4 space-y-1"
+          className="md:hidden border-t border-[#EAEAEA] bg-[#FBFBFA] px-6 py-4 space-y-1"
         >
           <a
             href="#projects"
             onClick={() => setMobileMenuOpen(false)}
             aria-current={activeSection === 'projects' ? 'location' : undefined}
-            className={`block text-xs uppercase tracking-wider font-mono font-medium min-h-[44px] flex items-center px-2 rounded-xs ${
-              activeSection === 'projects' ? 'bg-[#14294a] text-white font-bold' : 'text-[#16181b]'
+            className={`block text-xs uppercase tracking-wider font-mono min-h-[44px] flex items-center px-3 rounded-[4px] ${
+              activeSection === 'projects' ? 'bg-[#111111] text-[#FFFFFF] font-medium' : 'text-[#2F3437]'
             }`}
           >
             Portfolios
@@ -204,8 +172,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
             href="#philosophy"
             onClick={() => setMobileMenuOpen(false)}
             aria-current={activeSection === 'philosophy' ? 'location' : undefined}
-            className={`block text-xs uppercase tracking-wider font-mono font-medium min-h-[44px] flex items-center px-2 rounded-xs ${
-              activeSection === 'philosophy' ? 'bg-[#14294a] text-white font-bold' : 'text-[#16181b]'
+            className={`block text-xs uppercase tracking-wider font-mono min-h-[44px] flex items-center px-3 rounded-[4px] ${
+              activeSection === 'philosophy' ? 'bg-[#111111] text-[#FFFFFF] font-medium' : 'text-[#2F3437]'
             }`}
           >
             Principles
@@ -214,8 +182,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
             href="#experience"
             onClick={() => setMobileMenuOpen(false)}
             aria-current={activeSection === 'experience' ? 'location' : undefined}
-            className={`block text-xs uppercase tracking-wider font-mono font-medium min-h-[44px] flex items-center px-2 rounded-xs ${
-              activeSection === 'experience' ? 'bg-[#14294a] text-white font-bold' : 'text-[#16181b]'
+            className={`block text-xs uppercase tracking-wider font-mono min-h-[44px] flex items-center px-3 rounded-[4px] ${
+              activeSection === 'experience' ? 'bg-[#111111] text-[#FFFFFF] font-medium' : 'text-[#2F3437]'
             }`}
           >
             Record
@@ -224,8 +192,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
             href="#contact"
             onClick={() => setMobileMenuOpen(false)}
             aria-current={activeSection === 'contact' ? 'location' : undefined}
-            className={`block text-xs uppercase tracking-wider font-mono font-medium min-h-[44px] flex items-center px-2 rounded-xs ${
-              activeSection === 'contact' ? 'bg-[#14294a] text-white font-bold' : 'text-[#16181b]'
+            className={`block text-xs uppercase tracking-wider font-mono min-h-[44px] flex items-center px-3 rounded-[4px] ${
+              activeSection === 'contact' ? 'bg-[#111111] text-[#FFFFFF] font-medium' : 'text-[#2F3437]'
             }`}
           >
             Contact
@@ -235,25 +203,25 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Molly Hames on LinkedIn (opens in new tab)"
-            className="flex items-center gap-1.5 text-xs uppercase tracking-wider font-mono font-medium text-[#16181b] min-h-[44px] px-2"
+            className="flex items-center gap-1.5 text-xs uppercase tracking-wider font-mono text-[#2F3437] min-h-[44px] px-3"
           >
             <span>LinkedIn</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-[#73716b]" aria-hidden="true" />
+            <ArrowUpRightIcon className="w-3.5 h-3.5 text-[#787774]" />
           </a>
         </nav>
       )}
 
-      {/* Subtle 2px Reading Progress Indicator */}
+      {/* Reading Progress Indicator */}
       <div 
         role="progressbar"
         aria-label="Page reading progress"
         aria-valuenow={Math.round(scrollProgress)}
         aria-valuemin={0}
         aria-valuemax={100}
-        className="w-full h-[2px] bg-transparent overflow-hidden"
+        className="w-full h-[1px] bg-transparent overflow-hidden"
       >
         <div 
-          className="h-full bg-[#14294a] transition-all duration-75 ease-out"
+          className="h-full bg-[#111111] transition-all duration-75 ease-out"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>

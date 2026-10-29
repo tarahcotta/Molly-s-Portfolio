@@ -22,11 +22,11 @@ export default function App() {
   const allProjects = [...FEATURED_PROJECTS, ...ADDITIONAL_PROJECTS];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#fcfbf9] text-[#16181b] selection:bg-[#14294a] selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#FBFBFA] text-[#111111] selection:bg-[#111111] selection:text-[#FFFFFF]">
       {/* Skip to Main Content Link for Keyboard & Screen Reader Users */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#14294a] focus:text-white focus:text-xs focus:font-mono focus:uppercase focus:tracking-wider focus:shadow-md focus:outline-none focus:ring-2 focus:ring-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#111111] focus:text-[#FFFFFF] focus:text-xs focus:font-mono focus:uppercase focus:tracking-wider focus:outline-none focus:ring-2 focus:ring-[#FFFFFF] rounded-[4px]"
       >
         Skip to main content
       </a>
