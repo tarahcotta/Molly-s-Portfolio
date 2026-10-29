@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { Project } from './data/portfolioData';
+import { Project, FEATURED_PROJECTS, ADDITIONAL_PROJECTS } from './data/portfolioData';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ProjectsSection } from './components/ProjectsSection';
@@ -19,6 +19,8 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
+  const allProjects = [...FEATURED_PROJECTS, ...ADDITIONAL_PROJECTS];
+
   return (
     <div className="min-h-screen flex flex-col bg-[#fcfbf9] text-[#16181b] selection:bg-[#14294a] selection:text-white">
       {/* Skip to Main Content Link for Keyboard & Screen Reader Users */}
@@ -29,7 +31,7 @@ export default function App() {
         Skip to main content
       </a>
 
-      {/* 3-Zone Navigation Header */}
+      {/* 3-Zone Navigation Header with Active Scrollspy and Reading Progress */}
       <Navbar onOpenResume={() => setIsResumeOpen(true)} />
 
       {/* Main Content Flow */}
@@ -53,9 +55,11 @@ export default function App() {
       {/* Clean Footer */}
       <Footer onOpenResume={() => setIsResumeOpen(true)} />
 
-      {/* Case Study Deep-Dive Modal */}
+      {/* Case Study Deep-Dive Modal with Carousel Navigation */}
       <ProjectModal
         project={selectedProject}
+        allProjects={allProjects}
+        onNavigate={(project) => setSelectedProject(project)}
         onClose={() => setSelectedProject(null)}
       />
 

@@ -9,9 +9,18 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('top');
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
 
   useEffect(() => {
     const handleScroll = () => {
+      // Track reading progress
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        const progress = Math.min(100, Math.max(0, (window.scrollY / totalHeight) * 100));
+        setScrollProgress(progress);
+      }
+
+      // Track active section for scrollspy
       const sections = ['top', 'projects', 'philosophy', 'experience', 'contact'];
       const scrollPosition = window.scrollY + 120;
 
@@ -191,6 +200,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
           </a>
         </nav>
       )}
+
+      {/* Subtle 2px Reading Progress Indicator */}
+      <div 
+        role="progressbar"
+        aria-label="Page reading progress"
+        aria-valuenow={Math.round(scrollProgress)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        className="w-full h-[2px] bg-transparent overflow-hidden"
+      >
+        <div 
+          className="h-full bg-[#14294a] transition-all duration-75 ease-out"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
     </header>
   );
 };

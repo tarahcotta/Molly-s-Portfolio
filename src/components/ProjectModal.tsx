@@ -1,20 +1,58 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Project } from '../data/portfolioData';
-import { X, ExternalLink, CheckCircle2 } from 'lucide-react';
+import { X, ExternalLink, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProjectModalProps {
   project: Project | null;
+  allProjects?: Project[];
+  onNavigate?: (project: Project) => void;
   onClose: () => void;
 }
 
-export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
+export const ProjectModal: React.FC<ProjectModalProps> = ({ 
+  project, 
+  allProjects = [], 
+  onNavigate, 
+  onClose 
+}) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const [liveAnnouncement, setLiveAnnouncement] = useState('');
+
+  const currentIndex = project && allProjects.length > 0 
+    ? allProjects.findIndex(p => p.id === project.id) 
+    : -1;
+
+  const hasPrev = currentIndex > 0;
+  const hasNext = currentIndex >= 0 && currentIndex < allProjects.length - 1;
+
+  const handlePrev = () => {
+    if (hasPrev && onNavigate) {
+      const prevProject = allProjects[currentIndex - 1];
+      onNavigate(prevProject);
+      setLiveAnnouncement(`Now viewing project ${currentIndex} of ${allProjects.length}: ${prevProject.title}`);
+    }
+  };
+
+  const handleNext = () => {
+    if (hasNext && onNavigate) {
+      const nextProject = allProjects[currentIndex + 1];
+      onNavigate(nextProject);
+      setLiveAnnouncement(`Now viewing project ${currentIndex + 2} of ${allProjects.length}: ${nextProject.title}`);
+    }
+  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onClose();
+      } else if (e.key === 'ArrowLeft' && hasPrev) {
+        handlePrev();
+      } else if (e.key === 'ArrowRight' && hasNext) {
+        handleNext();
+      }
     };
+
     if (project) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
@@ -24,7 +62,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
       document.body.style.overflow = 'unset';
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [project, onClose]);
+  }, [project, currentIndex, hasPrev, hasNext, onClose]);
 
   if (!project) return null;
 
@@ -42,6 +80,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         onClick={(e) => e.stopPropagation()}
         tabIndex={-1}
       >
+        {/* Screen Reader Live Region for Case Study Navigation */}
+        <div role="status" aria-live="polite" className="sr-only">
+          {liveAnnouncement}
+        </div>
+
         {/* Header Bar */}
         <div className="flex items-start justify-between gap-4 border-b border-[#e5e3df] pb-5">
           <div className="space-y-1">
@@ -58,14 +101,43 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             </p>
           </div>
 
-          <button
-            ref={closeButtonRef}
-            onClick={onClose}
-            className="min-w-[44px] min-h-[44px] p-2 text-[#73716b] hover:text-[#16181b] transition-colors cursor-pointer shrink-0 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
-            aria-label="Close dossier"
-          >
-            <X className="w-5 h-5" aria-hidden="true" />
-          </button>
+          <div className="flex items-center gap-2 shrink-0">
+            {/* Sequential Carousel Navigation */}
+            {allProjects.length > 1 && (
+              <div className="hidden sm:flex items-center gap-1.5 mr-2 pr-3 border-r border-[#e5e3df] text-xs font-mono text-[#73716b]">
+                <button
+                  onClick={handlePrev}
+                  disabled={!hasPrev}
+                  aria-label="Previous case study"
+                  className="min-w-[36px] min-h-[36px] p-1.5 rounded-xs border border-[#d2cec5] hover:bg-[#f2efe9] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
+                >
+                  <ChevronLeft className="w-4 h-4" aria-hidden="true" />
+                </button>
+
+                <span className="px-1 text-[11px] tabular-nums">
+                  0{currentIndex + 1} / 0{allProjects.length}
+                </span>
+
+                <button
+                  onClick={handleNext}
+                  disabled={!hasNext}
+                  aria-label="Next case study"
+                  className="min-w-[36px] min-h-[36px] p-1.5 rounded-xs border border-[#d2cec5] hover:bg-[#f2efe9] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
+                >
+                  <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                </button>
+              </div>
+            )}
+
+            <button
+              ref={closeButtonRef}
+              onClick={onClose}
+              className="min-w-[44px] min-h-[44px] p-2 text-[#73716b] hover:text-[#16181b] transition-colors cursor-pointer shrink-0 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
+              aria-label="Close dossier"
+            >
+              <X className="w-5 h-5" aria-hidden="true" />
+            </button>
+          </div>
         </div>
 
         {/* Impact Balance Sheet */}
@@ -133,29 +205,55 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
         {/* Footer actions */}
         <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#e5e3df]">
-          {project.externalUrl ? (
-            <a
-              href={project.externalUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Visit official study portal for ${project.title} (opens in new tab)`}
-              className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 text-xs font-mono font-medium uppercase tracking-wider text-white bg-[#14294a] hover:bg-[#0f203b] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
-            >
-              <span>Visit Official Study Portal</span>
-              <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
-            </a>
-          ) : (
-            <div className="text-xs font-mono text-[#73716b]">
-              Conducted at {project.organization}
-            </div>
-          )}
+          <div className="flex items-center gap-3">
+            {project.externalUrl ? (
+              <a
+                href={project.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit official study portal for ${project.title} (opens in new tab)`}
+                className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 text-xs font-mono font-medium uppercase tracking-wider text-white bg-[#14294a] hover:bg-[#0f203b] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
+              >
+                <span>Visit Official Study Portal</span>
+                <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+              </a>
+            ) : (
+              <div className="text-xs font-mono text-[#73716b]">
+                Conducted at {project.organization}
+              </div>
+            )}
+          </div>
 
-          <button
-            onClick={onClose}
-            className="min-h-[44px] px-4 py-2 text-xs font-mono uppercase tracking-wider text-[#16181b] bg-[#fcfbf9] hover:bg-[#f2efe9] border border-[#d2cec5] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
-          >
-            <span>Close Dossier</span>
-          </button>
+          <div className="flex items-center gap-3">
+            {/* Mobile Carousel Controls */}
+            {allProjects.length > 1 && (
+              <div className="flex sm:hidden items-center gap-2 text-xs font-mono">
+                <button
+                  onClick={handlePrev}
+                  disabled={!hasPrev}
+                  className="min-h-[44px] px-3 border border-[#d2cec5] disabled:opacity-30"
+                  aria-label="Previous project"
+                >
+                  Prev
+                </button>
+                <button
+                  onClick={handleNext}
+                  disabled={!hasNext}
+                  className="min-h-[44px] px-3 border border-[#d2cec5] disabled:opacity-30"
+                  aria-label="Next project"
+                >
+                  Next
+                </button>
+              </div>
+            )}
+
+            <button
+              onClick={onClose}
+              className="min-h-[44px] px-4 py-2 text-xs font-mono uppercase tracking-wider text-[#16181b] bg-[#fcfbf9] hover:bg-[#f2efe9] border border-[#d2cec5] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#14294a]"
+            >
+              <span>Close Dossier</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
