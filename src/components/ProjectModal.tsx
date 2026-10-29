@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Project } from '../data/portfolioData';
-import { X, ExternalLink, CheckCircle2, ArrowRight } from 'lucide-react';
+import { X, ExternalLink, CheckCircle2 } from 'lucide-react';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -26,51 +26,49 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-stone-950/60 backdrop-blur-xs animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#16181b]/50 backdrop-blur-xs animate-in fade-in duration-150"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
       <div 
-        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border border-stone-200 p-6 sm:p-8 space-y-6 text-stone-900"
+        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white border border-[#d8d5cd] p-6 sm:p-8 space-y-6 text-[#16181b] shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Bar */}
-        <div className="flex items-start justify-between gap-4 border-b border-stone-200 pb-5">
+        <div className="flex items-start justify-between gap-4 border-b border-[#e5e3df] pb-5">
           <div className="space-y-1">
-            <div className="flex items-center gap-2 text-xs font-mono text-stone-500 uppercase tracking-wider">
-              <span>Project 0{project.order}</span>
-              <span aria-hidden="true">·</span>
-              <span>{project.organization}</span>
-              <span aria-hidden="true">·</span>
+            <div className="flex items-center gap-2 text-xs font-mono text-[#73716b] uppercase tracking-wider">
+              <span className="font-semibold text-[#14294a]">{project.organization}</span>
+              <span aria-hidden="true" className="text-[#c4c0b6]">/</span>
               <span>{project.timeframe}</span>
             </div>
-            <h2 id="modal-title" className="text-2xl sm:text-3xl font-bold tracking-tight text-stone-900">
+            <h2 id="modal-title" className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-[#16181b]">
               {project.title}
             </h2>
-            <p className="text-sm font-medium text-stone-600">
+            <p className="text-xs font-mono uppercase tracking-wider text-[#73716b]">
               {project.subtitle}
             </p>
           </div>
 
           <button
             onClick={onClose}
-            className="p-2 text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-lg transition-colors cursor-pointer shrink-0"
+            className="p-1.5 text-[#73716b] hover:text-[#16181b] transition-colors cursor-pointer shrink-0"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Key Metrics Banner */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-xl bg-stone-50 border border-stone-200/80">
+        {/* Impact Balance Sheet */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 bg-[#fcfbf9] border border-[#e5e3df]">
           {project.metrics.map((metric, i) => (
             <div key={i} className="space-y-0.5">
-              <div className="text-xl sm:text-2xl font-bold font-mono text-stone-900 tabular-nums">
+              <div className="text-xl sm:text-2xl font-mono font-semibold text-[#16181b] tabular-nums">
                 {metric.value}
               </div>
-              <div className="text-xs text-stone-600 font-medium">
+              <div className="text-xs text-[#5a5853] font-medium">
                 {metric.label}
               </div>
             </div>
@@ -79,50 +77,47 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
         {/* Executive Summary */}
         <div className="space-y-2">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-stone-500 font-mono">
-            Overview
+          <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#73716b]">
+            Dossier Summary
           </h3>
-          <p className="text-base text-stone-800 leading-relaxed whitespace-pre-line bg-stone-50/50 p-4 rounded-xl border border-stone-100">
+          <p className="text-sm sm:text-base text-[#373a3e] leading-relaxed whitespace-pre-line bg-[#fcfbf9] p-4 border border-[#edebe6]">
             {project.summary}
           </p>
         </div>
 
-        {/* Narrative & Background */}
-        <div className="space-y-3">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-stone-500 font-mono">
-            Context &amp; Strategic Approach
+        {/* Strategic Context */}
+        <div className="space-y-2">
+          <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#73716b]">
+            Context &amp; Execution Framework
           </h3>
-          <div className="space-y-2.5 text-sm sm:text-base text-stone-700 leading-relaxed">
+          <div className="space-y-2 text-sm sm:text-base text-[#373a3e] leading-relaxed">
             {project.narrative.map((para, i) => (
               <p key={i}>{para}</p>
             ))}
           </div>
         </div>
 
-        {/* Key Outcomes & Measurable Results */}
-        <div className="space-y-3">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-stone-500 font-mono">
-            Key Outcomes &amp; Value Delivered
+        {/* Measurable Outcomes */}
+        <div className="space-y-2">
+          <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#73716b]">
+            Key Outcomes &amp; Deliverables
           </h3>
-          <ul className="space-y-2.5">
+          <ul className="space-y-2">
             {project.keyOutcomes.map((outcome, i) => (
-              <li key={i} className="flex items-start gap-2.5 text-sm sm:text-base text-stone-800">
-                <CheckCircle2 className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
+              <li key={i} className="flex items-start gap-2.5 text-sm text-[#16181b]">
+                <CheckCircle2 className="w-4 h-4 text-[#14294a] shrink-0 mt-0.5" />
                 <span>{outcome}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Competencies / Tags */}
-        <div className="pt-2 border-t border-stone-100">
-          <div className="text-xs font-semibold uppercase tracking-wider text-stone-500 font-mono mb-2">
-            Competencies Applied
-          </div>
-          <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-stone-600">
+        {/* Competencies */}
+        <div className="pt-2 border-t border-[#edebe6]">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs font-mono text-[#5a5853]">
             {project.tags.map((tag, i) => (
               <span key={i} className="inline-flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-stone-400" />
+                <span className="w-1 h-1 bg-[#14294a]" />
                 <span>{tag}</span>
               </span>
             ))}
@@ -130,28 +125,28 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         </div>
 
         {/* Footer actions */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-stone-200">
+        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#e5e3df]">
           {project.externalUrl ? (
             <a
               href={project.externalUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors shadow-xs"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-mono font-medium uppercase tracking-wider text-white bg-[#14294a] hover:bg-[#0f203b] transition-colors"
             >
-              <span>View Official Study Portal</span>
-              <ExternalLink className="w-4 h-4" />
+              <span>Visit Official Study Portal</span>
+              <ExternalLink className="w-3.5 h-3.5" />
             </a>
           ) : (
-            <div className="text-xs text-stone-500">
-              Internal initiative at {project.organization}
+            <div className="text-xs font-mono text-[#73716b]">
+              Conducted at {project.organization}
             </div>
           )}
 
           <button
             onClick={onClose}
-            className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-stone-700 hover:text-stone-950 bg-stone-100 hover:bg-stone-200 rounded-lg transition-colors cursor-pointer"
+            className="px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider text-[#16181b] bg-[#fcfbf9] hover:bg-[#f2efe9] border border-[#d2cec5] transition-colors cursor-pointer"
           >
-            <span>Close Overview</span>
+            <span>Close Dossier</span>
           </button>
         </div>
       </div>

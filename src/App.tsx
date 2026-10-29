@@ -20,12 +20,20 @@ export default function App() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col bg-stone-50 text-stone-900 selection:bg-stone-900 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#fcfbf9] text-[#16181b] selection:bg-[#14294a] selection:text-white">
+      {/* Skip to Main Content Link for Keyboard & Screen Reader Users */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#14294a] focus:text-white focus:text-xs focus:font-mono focus:uppercase focus:tracking-wider focus:shadow-md focus:outline-none focus:ring-2 focus:ring-white"
+      >
+        Skip to main content
+      </a>
+
       {/* 3-Zone Navigation Header */}
       <Navbar onOpenResume={() => setIsResumeOpen(true)} />
 
       {/* Main Content Flow */}
-      <main className="flex-1">
+      <main id="main-content" className="flex-1 focus:outline-none" tabIndex={-1}>
         {/* Hero Section with Molly's Portrait and Quantified Impact Strip */}
         <Hero onOpenResume={() => setIsResumeOpen(true)} />
 

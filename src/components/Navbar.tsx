@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MOLLY_PROFILE } from '../data/portfolioData';
-import { FileText, Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 interface NavbarProps {
   onOpenResume: () => void;
@@ -10,64 +10,65 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-stone-50/90 backdrop-blur-md border-b border-stone-200">
+    <header className="sticky top-0 z-40 bg-[#fcfbf9]/95 backdrop-blur-xs border-b border-[#e5e3df]">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-8">
-        {/* Zone 1: Brand Wordmark (Single text element) */}
+        {/* Zone 1: Distinctive Brand Mark */}
         <a 
           href="#top" 
-          className="text-lg font-bold tracking-tight text-stone-900 whitespace-nowrap shrink-0 hover:text-stone-700 transition-colors"
+          className="group inline-flex items-baseline gap-2 whitespace-nowrap shrink-0"
         >
-          {MOLLY_PROFILE.name}
-          <span className="ml-1.5 text-xs font-semibold text-stone-500 uppercase tracking-wider">
+          <span className="font-serif text-lg font-bold tracking-tight text-[#16181b] group-hover:text-[#14294a] transition-colors">
+            {MOLLY_PROFILE.name}
+          </span>
+          <span className="text-[11px] font-mono tracking-widest uppercase text-[#73716b]">
             {MOLLY_PROFILE.credentials}
           </span>
         </a>
 
-        {/* Zone 2: 4 Clean Single-Line Nav Links */}
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-stone-600">
+        {/* Zone 2: 4 Single-Line Text Links */}
+        <nav className="hidden md:flex items-center gap-8 text-xs font-medium tracking-wide uppercase text-[#5a5853]">
           <a 
             href="#projects" 
-            className="hover:text-stone-950 transition-colors whitespace-nowrap shrink-0"
+            className="hover:text-[#16181b] transition-colors whitespace-nowrap shrink-0"
           >
-            Featured Work
+            Portfolios
           </a>
           <a 
             href="#philosophy" 
-            className="hover:text-stone-950 transition-colors whitespace-nowrap shrink-0"
+            className="hover:text-[#16181b] transition-colors whitespace-nowrap shrink-0"
           >
-            Philosophy
+            Principles
           </a>
           <a 
             href="#experience" 
-            className="hover:text-stone-950 transition-colors whitespace-nowrap shrink-0"
+            className="hover:text-[#16181b] transition-colors whitespace-nowrap shrink-0"
           >
-            Experience
+            Record
           </a>
           <a 
             href="#contact" 
-            className="hover:text-stone-950 transition-colors whitespace-nowrap shrink-0"
+            className="hover:text-[#16181b] transition-colors whitespace-nowrap shrink-0"
           >
-            Connect
+            Contact
           </a>
           <a 
             href={MOLLY_PROFILE.linkedInUrl} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-stone-600 hover:text-stone-950 transition-colors whitespace-nowrap shrink-0"
+            className="inline-flex items-center gap-1 text-[#5a5853] hover:text-[#16181b] transition-colors whitespace-nowrap shrink-0"
           >
             <span>LinkedIn</span>
-            <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
+            <ArrowUpRight className="w-3 h-3 opacity-60" />
           </a>
         </nav>
 
-        {/* Zone 3: 1 Primary Action */}
+        {/* Zone 3: Single Primary Action */}
         <div className="hidden md:flex items-center shrink-0">
           <button
             onClick={onOpenResume}
-            className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-stone-900 bg-stone-100 hover:bg-stone-200 active:bg-stone-300 border border-stone-300 rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-xs cursor-pointer"
+            className="px-3.5 py-1.5 text-xs font-mono font-medium tracking-wider uppercase text-[#16181b] bg-white hover:bg-[#f2efe9] active:bg-[#e8e4dc] border border-[#d2cec5] rounded-xs transition-colors cursor-pointer shadow-2xs"
           >
-            <FileText className="w-3.5 h-3.5 text-stone-700" />
-            <span>View Resume</span>
+            Curriculum Vitae
           </button>
         </div>
 
@@ -75,14 +76,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
         <div className="flex md:hidden items-center gap-2">
           <button
             onClick={onOpenResume}
-            className="p-2 text-stone-700 hover:text-stone-900 hover:bg-stone-100 rounded-lg transition-colors text-xs font-medium border border-stone-200"
+            className="px-2.5 py-1 text-xs font-mono uppercase text-[#16181b] border border-[#d2cec5] rounded-xs"
             aria-label="View Resume"
           >
-            Resume
+            CV
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-stone-700 hover:text-stone-900 rounded-lg"
+            className="p-1.5 text-[#5a5853] hover:text-[#16181b] rounded-xs"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -92,43 +93,43 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-stone-200 bg-stone-50 px-6 py-4 space-y-3">
+        <div className="md:hidden border-t border-[#e5e3df] bg-[#fcfbf9] px-6 py-4 space-y-3">
           <a
             href="#projects"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-medium text-stone-700 hover:text-stone-950 py-1"
+            className="block text-xs uppercase tracking-wider font-medium text-[#16181b] py-1"
           >
-            Featured Work
+            Portfolios
           </a>
           <a
             href="#philosophy"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-medium text-stone-700 hover:text-stone-950 py-1"
+            className="block text-xs uppercase tracking-wider font-medium text-[#16181b] py-1"
           >
-            Philosophy
+            Principles
           </a>
           <a
             href="#experience"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-medium text-stone-700 hover:text-stone-950 py-1"
+            className="block text-xs uppercase tracking-wider font-medium text-[#16181b] py-1"
           >
-            Experience
+            Record
           </a>
           <a
             href="#contact"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-medium text-stone-700 hover:text-stone-950 py-1"
+            className="block text-xs uppercase tracking-wider font-medium text-[#16181b] py-1"
           >
-            Connect
+            Contact
           </a>
           <a
             href={MOLLY_PROFILE.linkedInUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-sm font-medium text-stone-700 hover:text-stone-950 py-1"
+            className="flex items-center gap-1.5 text-xs uppercase tracking-wider font-medium text-[#16181b] py-1"
           >
-            <span>LinkedIn Profile</span>
-            <ArrowUpRight className="w-4 h-4 text-stone-400" />
+            <span>LinkedIn</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-[#73716b]" />
           </a>
         </div>
       )}

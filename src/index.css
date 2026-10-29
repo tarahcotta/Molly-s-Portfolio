@@ -2,28 +2,42 @@
 
 @layer base {
   :root {
-    --font-sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    --font-sans: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-serif: 'Fraunces', Georgia, serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   }
 
   body {
     font-family: var(--font-sans);
-    color: #1c1917;
-    background-color: #fafaf9;
+    color: #16181b;
+    background-color: #fcfbf9;
     -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-serif);
     letter-spacing: -0.02em;
   }
 
-  .font-display {
-    font-family: var(--font-display);
+  .font-mono, .tabular-nums {
+    font-family: var(--font-mono);
   }
 
-  .tabular-nums {
-    font-variant-numeric: tabular-nums;
+  /* Universal high-contrast visible keyboard focus ring */
+  :focus-visible {
+    outline: 2px solid #14294a !important;
+    outline-offset: 2px !important;
+  }
+
+  /* Prefers-reduced-motion accessibility safeguard */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
