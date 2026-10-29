@@ -64,7 +64,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenResume }) => {
 
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#787774]">
           <div>
-            © {new Date().getFullYear()} Molly Hames. National Laboratory of the Rockies research portfolio.
+            © {new Date().getFullYear()} Molly Hames. Site created by{' '}
+            <a
+              href="https://www.tarahcotta.studio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#111111] underline underline-offset-2 hover:opacity-75 transition-opacity inline-flex items-center gap-0.5"
+            >
+              <span>Tarah Cotta</span>
+              <ArrowUpRightIcon className="w-2.5 h-2.5 opacity-60" />
+            </a>
           </div>
 
           <button

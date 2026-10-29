@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { MOLLY_PROFILE, CAREER_HISTORY } from '../data/portfolioData';
-import { CloseIcon, DownloadIcon, ExternalLinkIcon, CheckIcon } from './Icons';
+import { CloseIcon, DownloadIcon, CheckIcon } from './Icons';
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -40,13 +40,13 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
         onClick={(e) => e.stopPropagation()}
         tabIndex={-1}
       >
-        {/* Modal Top Bar - Pinned Header */}
-        <div className="shrink-0 flex items-center justify-between px-6 sm:px-8 py-4 border-b border-[#EAEAEA] bg-[#FBFBFA]">
+        {/* Modal Top Bar - High-Readability Pinned Header */}
+        <div className="shrink-0 flex items-center justify-between px-6 sm:px-8 py-4 sm:py-5 border-b border-[#EAEAEA] bg-[#FFFFFF]">
           <div className="space-y-0.5">
-            <div className="text-[11px] font-mono uppercase tracking-wider text-[#787774]">
+            <div className="text-xs font-mono font-medium uppercase tracking-wider text-[#2F3437]">
               Official Record · Executive CV
             </div>
-            <h2 id="resume-title" className="text-base sm:text-lg font-serif font-normal text-[#111111] leading-tight">
+            <h2 id="resume-title" className="text-lg sm:text-xl font-serif font-medium text-[#111111] leading-tight">
               {MOLLY_PROFILE.name}, {MOLLY_PROFILE.credentials}
             </h2>
           </div>
@@ -61,25 +61,14 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
               <span>Download PDF</span>
             </a>
 
-            <a
-              href={MOLLY_PROFILE.resumePdfPath}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open Curriculum Vitae PDF in a new tab"
-              className="hidden sm:inline-flex items-center gap-1.5 min-h-[36px] px-3 py-1.5 text-xs font-mono uppercase tracking-wider text-[#111111] bg-[#FFFFFF] border border-[#EAEAEA] hover:bg-[#F7F6F3] active:scale-[0.98] rounded-[4px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
-            >
-              <ExternalLinkIcon className="w-3.5 h-3.5 text-[#787774]" />
-              <span>Open PDF</span>
-            </a>
-
-            <kbd className="hidden sm:inline-block text-[10px] text-[#787774] font-mono px-1.5 py-0.5 rounded-[4px] border border-[#EAEAEA] bg-[#FFFFFF]">
+            <kbd className="hidden sm:inline-block text-[11px] text-[#2F3437] font-mono font-medium px-2 py-0.5 rounded-[4px] border border-[#D0D0CE] bg-[#FBFBFA]">
               Esc
             </kbd>
 
             <button
               ref={closeButtonRef}
               onClick={onClose}
-              className="min-w-[36px] min-h-[36px] p-1.5 text-[#787774] hover:text-[#111111] hover:bg-[#FFFFFF] border border-transparent hover:border-[#EAEAEA] rounded-[4px] transition-colors cursor-pointer flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
+              className="min-w-[36px] min-h-[36px] p-1.5 text-[#111111] hover:text-[#000000] hover:bg-[#F7F6F3] border border-[#D0D0CE] rounded-[4px] transition-colors cursor-pointer flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
               aria-label="Close Curriculum Vitae modal"
             >
               <CloseIcon className="w-4 h-4" />
@@ -89,13 +78,10 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
         {/* Modal Scrollable Content */}
         <div className="flex-1 overflow-y-auto p-6 sm:p-10 space-y-8 text-[#111111]">
-          {/* Header */}
-          <div className="border-b border-[#EAEAEA] pb-6 space-y-2">
-            <h1 className="text-2xl sm:text-3xl font-serif font-normal text-[#111111] leading-tight">
-              {MOLLY_PROFILE.name}, {MOLLY_PROFILE.credentials}
-            </h1>
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-[#787774] font-mono">
-              <span>{MOLLY_PROFILE.location}</span>
+          {/* Executive Overview & Direct Contacts */}
+          <div className="border-b border-[#EAEAEA] pb-6 space-y-3">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-[#787774] font-mono">
+              <span className="text-[#111111] font-medium">{MOLLY_PROFILE.location}</span>
               <span aria-hidden="true" className="text-[#EAEAEA]">/</span>
               <span>{MOLLY_PROFILE.phone}</span>
               <span aria-hidden="true" className="text-[#EAEAEA]">/</span>
@@ -103,10 +89,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
               <span aria-hidden="true" className="text-[#EAEAEA]">/</span>
               <span>{MOLLY_PROFILE.linkedInDisplay}</span>
             </div>
-            <div className="text-xs font-mono uppercase tracking-wider text-[#111111] pt-2 font-medium">
-              Research Portfolio &amp; Project Management Leader
-            </div>
-            <p className="text-sm text-[#2F3437] leading-relaxed pt-1 max-w-3xl">
+            <p className="text-sm text-[#2F3437] leading-relaxed max-w-3xl">
               {MOLLY_PROFILE.bio}
             </p>
           </div>

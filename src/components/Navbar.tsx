@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { MOLLY_PROFILE } from '../data/portfolioData';
-import { MenuIcon, CloseIcon, ArrowUpRightIcon } from './Icons';
+import { MenuIcon, CloseIcon } from './Icons';
 
 interface NavbarProps {
-  onOpenResume: () => void;
+  onOpenResume?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
+export const Navbar: React.FC<NavbarProps> = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('top');
   const [scrollProgress, setScrollProgress] = useState<number>(0);
@@ -45,7 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
   return (
     <header className="sticky top-0 z-40 bg-[#FBFBFA]/95 backdrop-blur-xs border-b border-[#EAEAEA]">
       <div className="max-w-5xl mx-auto px-6 py-3.5 flex items-center justify-between gap-6">
-        {/* Zone 1: Brand Wordmark */}
+        {/* Brand Wordmark */}
         <div className="flex items-center gap-3 shrink-0">
           <a 
             href="#top" 
@@ -61,7 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
           </a>
         </div>
 
-        {/* Zone 2: Editorial Navigation Links */}
+        {/* Navigation Links */}
         <nav 
           aria-label="Primary navigation"
           className="hidden md:flex items-center gap-1 text-xs font-mono uppercase tracking-wider"
@@ -110,37 +110,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
           >
             Contact
           </a>
-          <a 
-            href={MOLLY_PROFILE.linkedInUrl} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            aria-label="Molly Hames on LinkedIn (opens in new tab)"
-            className="inline-flex items-center gap-1 text-[#787774] hover:text-[#111111] hover:bg-[#F7F6F3] px-2.5 py-1.5 rounded-[4px] transition-all whitespace-nowrap shrink-0 ml-1"
-          >
-            <span>LinkedIn</span>
-            <ArrowUpRightIcon className="w-3 h-3 opacity-60" />
-          </a>
         </nav>
 
-        {/* Zone 3: Primary Action (Section 5: solid #111111, radius 4px to 6px, scale(0.98)) */}
-        <div className="hidden md:flex items-center gap-2 shrink-0">
-          <button
-            onClick={onOpenResume}
-            className="px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider text-[#FFFFFF] bg-[#111111] hover:bg-[#333333] active:scale-[0.98] rounded-[4px] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
-          >
-            Curriculum Vitae
-          </button>
-        </div>
-
-        {/* Mobile controls */}
+        {/* Mobile menu button */}
         <div className="flex md:hidden items-center gap-2">
-          <button
-            onClick={onOpenResume}
-            className="min-h-[38px] px-2.5 py-1 text-xs font-mono uppercase text-[#FFFFFF] bg-[#111111] rounded-[4px] flex items-center justify-center cursor-pointer"
-            aria-label="View Curriculum Vitae"
-          >
-            CV
-          </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="min-w-[38px] min-h-[38px] p-2 text-[#2F3437] hover:text-[#111111] rounded-[4px] border border-[#EAEAEA] flex items-center justify-center cursor-pointer"
@@ -197,16 +170,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
             }`}
           >
             Contact
-          </a>
-          <a
-            href={MOLLY_PROFILE.linkedInUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Molly Hames on LinkedIn (opens in new tab)"
-            className="flex items-center gap-1.5 text-xs uppercase tracking-wider font-mono text-[#2F3437] min-h-[44px] px-3"
-          >
-            <span>LinkedIn</span>
-            <ArrowUpRightIcon className="w-3.5 h-3.5 text-[#787774]" />
           </a>
         </nav>
       )}
