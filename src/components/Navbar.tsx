@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MOLLY_PROFILE } from '../data/portfolioData';
 import { MenuIcon, CloseIcon } from './Icons';
+import { DarkModeToggle } from './DarkModeToggle';
 
 interface NavbarProps {
   onOpenResume?: () => void;
@@ -43,19 +44,19 @@ export const Navbar: React.FC<NavbarProps> = () => {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-[#FBFBFA]/95 backdrop-blur-xs border-b border-[#EAEAEA]">
+    <header className="sticky top-0 z-40 bg-[var(--bg-canvas)]/95 backdrop-blur-xs border-b border-[var(--border-color)]">
       <div className="max-w-5xl mx-auto px-6 py-3.5 flex items-center justify-between gap-6">
         {/* Brand Wordmark */}
         <div className="flex items-center gap-3 shrink-0">
           <a 
             href="#top" 
-            className="group inline-flex items-baseline gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded-xs"
+            className="group inline-flex items-baseline gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ink-primary)] rounded-xs"
             aria-label="Molly Hames, PMP — Back to top"
           >
-            <span className="text-sm font-semibold tracking-tight text-[#111111]">
+            <span className="text-sm font-semibold tracking-tight text-[var(--ink-primary)]">
               {MOLLY_PROFILE.name}
             </span>
-            <span className="text-[11px] font-mono tracking-wider uppercase text-[#787774]">
+            <span className="text-[11px] font-mono tracking-wider uppercase text-[var(--ink-muted)]">
               {MOLLY_PROFILE.credentials}
             </span>
           </a>
@@ -71,8 +72,8 @@ export const Navbar: React.FC<NavbarProps> = () => {
             aria-current={activeSection === 'projects' ? 'location' : undefined}
             className={`px-2.5 py-1.5 rounded-[4px] transition-all whitespace-nowrap shrink-0 ${
               activeSection === 'projects'
-                ? 'bg-[#111111] text-[#FFFFFF] font-medium'
-                : 'text-[#787774] hover:text-[#111111] hover:bg-[#F7F6F3]'
+                ? 'bg-[var(--ink-primary)] text-[var(--bg-canvas)] font-medium'
+                : 'text-[var(--ink-muted)] hover:text-[var(--ink-primary)] hover:bg-[var(--bg-subtle)]'
             }`}
           >
             Portfolios
@@ -82,8 +83,8 @@ export const Navbar: React.FC<NavbarProps> = () => {
             aria-current={activeSection === 'philosophy' ? 'location' : undefined}
             className={`px-2.5 py-1.5 rounded-[4px] transition-all whitespace-nowrap shrink-0 ${
               activeSection === 'philosophy'
-                ? 'bg-[#111111] text-[#FFFFFF] font-medium'
-                : 'text-[#787774] hover:text-[#111111] hover:bg-[#F7F6F3]'
+                ? 'bg-[var(--ink-primary)] text-[var(--bg-canvas)] font-medium'
+                : 'text-[var(--ink-muted)] hover:text-[var(--ink-primary)] hover:bg-[var(--bg-subtle)]'
             }`}
           >
             Principles
@@ -93,8 +94,8 @@ export const Navbar: React.FC<NavbarProps> = () => {
             aria-current={activeSection === 'experience' ? 'location' : undefined}
             className={`px-2.5 py-1.5 rounded-[4px] transition-all whitespace-nowrap shrink-0 ${
               activeSection === 'experience'
-                ? 'bg-[#111111] text-[#FFFFFF] font-medium'
-                : 'text-[#787774] hover:text-[#111111] hover:bg-[#F7F6F3]'
+                ? 'bg-[var(--ink-primary)] text-[var(--bg-canvas)] font-medium'
+                : 'text-[var(--ink-muted)] hover:text-[var(--ink-primary)] hover:bg-[var(--bg-subtle)]'
             }`}
           >
             Record
@@ -104,19 +105,23 @@ export const Navbar: React.FC<NavbarProps> = () => {
             aria-current={activeSection === 'contact' ? 'location' : undefined}
             className={`px-2.5 py-1.5 rounded-[4px] transition-all whitespace-nowrap shrink-0 ${
               activeSection === 'contact'
-                ? 'bg-[#111111] text-[#FFFFFF] font-medium'
-                : 'text-[#787774] hover:text-[#111111] hover:bg-[#F7F6F3]'
+                ? 'bg-[var(--ink-primary)] text-[var(--bg-canvas)] font-medium'
+                : 'text-[var(--ink-muted)] hover:text-[var(--ink-primary)] hover:bg-[var(--bg-subtle)]'
             }`}
           >
             Contact
           </a>
+          <div className="ml-2">
+            <DarkModeToggle />
+          </div>
         </nav>
 
         {/* Mobile menu button */}
         <div className="flex md:hidden items-center gap-2">
+          <DarkModeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="min-w-[38px] min-h-[38px] p-2 text-[#2F3437] hover:text-[#111111] rounded-[4px] border border-[#EAEAEA] flex items-center justify-center cursor-pointer"
+            className="min-w-[38px] min-h-[38px] p-2 text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] rounded-[4px] border border-[var(--border-color)] flex items-center justify-center cursor-pointer"
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={mobileMenuOpen}
           >
@@ -129,14 +134,14 @@ export const Navbar: React.FC<NavbarProps> = () => {
       {mobileMenuOpen && (
         <nav 
           aria-label="Mobile navigation"
-          className="md:hidden border-t border-[#EAEAEA] bg-[#FBFBFA] px-6 py-4 space-y-1"
+          className="md:hidden border-t border-[var(--border-color)] bg-[var(--bg-canvas)] px-6 py-4 space-y-1"
         >
           <a
             href="#projects"
             onClick={() => setMobileMenuOpen(false)}
             aria-current={activeSection === 'projects' ? 'location' : undefined}
             className={`block text-xs uppercase tracking-wider font-mono min-h-[44px] flex items-center px-3 rounded-[4px] ${
-              activeSection === 'projects' ? 'bg-[#111111] text-[#FFFFFF] font-medium' : 'text-[#2F3437]'
+              activeSection === 'projects' ? 'bg-[var(--ink-primary)] text-[var(--bg-canvas)] font-medium' : 'text-[var(--ink-secondary)]'
             }`}
           >
             Portfolios
@@ -146,7 +151,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
             onClick={() => setMobileMenuOpen(false)}
             aria-current={activeSection === 'philosophy' ? 'location' : undefined}
             className={`block text-xs uppercase tracking-wider font-mono min-h-[44px] flex items-center px-3 rounded-[4px] ${
-              activeSection === 'philosophy' ? 'bg-[#111111] text-[#FFFFFF] font-medium' : 'text-[#2F3437]'
+              activeSection === 'philosophy' ? 'bg-[var(--ink-primary)] text-[var(--bg-canvas)] font-medium' : 'text-[var(--ink-secondary)]'
             }`}
           >
             Principles
@@ -156,7 +161,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
             onClick={() => setMobileMenuOpen(false)}
             aria-current={activeSection === 'experience' ? 'location' : undefined}
             className={`block text-xs uppercase tracking-wider font-mono min-h-[44px] flex items-center px-3 rounded-[4px] ${
-              activeSection === 'experience' ? 'bg-[#111111] text-[#FFFFFF] font-medium' : 'text-[#2F3437]'
+              activeSection === 'experience' ? 'bg-[var(--ink-primary)] text-[var(--bg-canvas)] font-medium' : 'text-[var(--ink-secondary)]'
             }`}
           >
             Record
@@ -166,7 +171,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
             onClick={() => setMobileMenuOpen(false)}
             aria-current={activeSection === 'contact' ? 'location' : undefined}
             className={`block text-xs uppercase tracking-wider font-mono min-h-[44px] flex items-center px-3 rounded-[4px] ${
-              activeSection === 'contact' ? 'bg-[#111111] text-[#FFFFFF] font-medium' : 'text-[#2F3437]'
+              activeSection === 'contact' ? 'bg-[var(--ink-primary)] text-[var(--bg-canvas)] font-medium' : 'text-[var(--ink-secondary)]'
             }`}
           >
             Contact
@@ -184,7 +189,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
         className="w-full h-[1px] bg-transparent overflow-hidden"
       >
         <div 
-          className="h-full bg-[#111111] transition-all duration-75 ease-out"
+          className="h-full bg-[var(--ink-primary)] transition-all duration-75 ease-out"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>

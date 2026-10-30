@@ -1,9 +1,9 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 @layer base {
   :root {
-    --font-sans: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-    --font-serif: 'Newsreader', 'Playfair Display', Georgia, serif;
+    --font-sans: 'Public Sans', system-ui, -apple-system, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
     
     --bg-canvas: #FBFBFA;
@@ -25,18 +25,30 @@
     --pastel-red-text: #9F2F2D;
   }
 
+  .dark {
+    --bg-canvas: #0D0E10;
+    --bg-surface: #18191B;
+    --bg-subtle: #202123;
+    --border-color: #33363B;
+    --ink-primary: #F4F4F2;
+    --ink-secondary: #D8D8D4;
+    --ink-muted: #8E9196;
+  }
+
   body {
     font-family: var(--font-sans);
     color: var(--ink-primary);
     background-color: var(--bg-canvas);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s, color 0.2s;
   }
 
-  .font-serif, h1, h2, .editorial-heading {
-    font-family: var(--font-serif);
-    letter-spacing: -0.025em;
+  h1, h2, h3, h4, .editorial-heading {
+    font-family: var(--font-sans);
+    letter-spacing: -0.015em;
     line-height: 1.15;
+    font-weight: 600;
   }
 
   .font-mono, .tabular-nums, code, kbd {
@@ -44,20 +56,18 @@
   }
 
   kbd {
-    border: 1px solid #EAEAEA;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
-    background: #F7F6F3;
+    background: var(--bg-subtle);
     padding: 0.15rem 0.35rem;
     font-size: 0.75rem;
   }
 
-  /* Universal high-contrast visible keyboard focus ring */
   :focus-visible {
-    outline: 2px solid #111111 !important;
+    outline: 2px solid var(--ink-primary) !important;
     outline-offset: 2px !important;
   }
 
-  /* Prefers-reduced-motion accessibility safeguard */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -69,37 +79,18 @@
     }
   }
 
-  /* Print Stylesheet Optimization */
   @media print {
     body {
       background-color: #ffffff !important;
       color: #000000 !important;
       font-size: 10pt !important;
     }
-
     header,
     footer,
     button,
     .no-print,
     [role="dialog"] {
       display: none !important;
-    }
-
-    #projects,
-    #philosophy,
-    #experience,
-    #contact {
-      background: #ffffff !important;
-      border: none !important;
-      padding: 1.5rem 0 !important;
-      page-break-inside: avoid;
-    }
-
-    article {
-      page-break-inside: avoid;
-      break-inside: avoid;
-      border-bottom: 1px solid #eaeaea !important;
-      padding-bottom: 1.5rem !important;
     }
   }
 }

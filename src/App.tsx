@@ -22,7 +22,7 @@ export default function App() {
   const allProjects = [...FEATURED_PROJECTS, ...ADDITIONAL_PROJECTS];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FBFBFA] text-[#111111] selection:bg-[#111111] selection:text-[#FFFFFF]">
+    <div className="min-h-screen flex flex-col bg-[var(--bg-canvas)] text-[var(--ink-primary)] selection:bg-[var(--ink-primary)] selection:text-[var(--bg-canvas)]">
       {/* Skip to Main Content Link for Keyboard & Screen Reader Users */}
       <a
         href="#main-content"

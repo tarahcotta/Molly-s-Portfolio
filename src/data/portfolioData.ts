@@ -84,7 +84,7 @@ export const PHILOSOPHY_QUOTE = "Project management exists to clear obstacles fr
 
 export const PHILOSOPHY_NARRATIVE = [
   "Research belongs to the scientists doing it. My job is to protect their time, their funding, and their momentum. Over 15 years directing research portfolios and federal programs, I have managed more than $250M in federal awards, unified multi-laboratory energy programs, and eliminated administrative drag across multidisciplinary teams.",
-  "Scientists spend decades establishing the experiments that expand our understanding of energy, climate, and materials. These initiatives represent their life's work. I do not manage their science; I manage the friction surrounding it—securing timely subcontract approvals, modeling burn rates before funds stall, and coordinating across federal monitors so researchers can conduct research.",
+  "Scientists spend decades establishing the experiments that expand our understanding of energy, climate, and materials. These initiatives represent their life's work. I do not manage their science; I manage the friction surrounding it - securing timely subcontract approvals, modeling burn rates before funds stall, and coordinating across federal monitors so researchers can conduct research.",
   "Isolated task lists fail when applied to complex federal programs. I evaluate how funding solicitations, subcontracts, laboratory milestones, and inter-team dependencies interact across an entire division. When a program is distributed or tangled in legacy compliance, I construct modular tracking frameworks that give leadership immediate visibility while freeing project leads from administrative overhead."
 ];
 
@@ -99,7 +99,7 @@ export const CORE_VALUES: CoreValue[] = [
     id: "visibility",
     title: "Visibility",
     tagline: "Turning information into actionable clarity",
-    description: "Turn project performance information into something people can actually use to make decisions—replacing guesswork with clear, reliable dashboards and insights."
+    description: "Turn project performance information into something people can actually use to make decisions - replacing guesswork with clear, reliable dashboards and insights."
   },
   {
     id: "transparency",
@@ -349,7 +349,7 @@ export const CAREER_HISTORY: ExperienceItem[] = [
     period: "Oct 2014 – Jul 2019",
     highlights: [
       "Facilitated Biosciences Center strategic planning and coordinated 25+ scientific proposal submissions annually; the Center received two Early Career Awards in one year.",
-      "Helped develop a laboratory-wide business development strategy that contributed to 14% average annual growth in the industry partnership portfolio.",
+      "Helped develop a laboratory-wide business development strategy that contributed to 14% average annual growth in the laboratory's industry partnership portfolio.",
       "Served as Operations Manager for $19M geothermal and $10M algae portfolios, implementing project management frameworks that reduced PI administrative burden from 20+ hours to one hour per month and helped secure $5M in additional geothermal funding."
     ]
   },

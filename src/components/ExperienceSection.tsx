@@ -31,18 +31,18 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResu
   };
 
   return (
-    <section id="experience" aria-labelledby="experience-heading" className="py-20 md:py-28 bg-[#FFFFFF] border-b border-[#EAEAEA]">
+    <section id="experience" aria-labelledby="experience-heading" className="py-20 md:py-28 bg-[var(--bg-surface)] border-b border-[var(--border-color)]">
       <div className="max-w-5xl mx-auto px-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 pb-6 border-b border-[#EAEAEA]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 pb-6 border-b border-[var(--border-color)]">
           <div className="space-y-2 max-w-2xl">
-            <div className="text-xs font-mono uppercase tracking-wider text-[#787774]">
+            <div className="text-xs font-mono uppercase tracking-wider text-[var(--ink-muted)]">
               Leadership Record
             </div>
-            <h2 id="experience-heading" className="font-serif text-2xl sm:text-3xl lg:text-4xl font-medium tracking-[-0.025em] text-[#111111]">
+            <h2 id="experience-heading" className="font-sans text-2xl sm:text-3xl lg:text-4xl font-medium tracking-[-0.025em] text-[var(--ink-primary)]">
               15+ Years in National Laboratories &amp; Federal Programs
             </h2>
-            <p className="text-sm text-[#787774] leading-[1.6]">
+            <p className="text-sm text-[var(--ink-muted)] leading-[1.6]">
               A continuous record of managing multimillion-dollar research, federal awards under Unlimited Contracting Officer authority, and enterprise technology implementations.
             </p>
           </div>
@@ -50,7 +50,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResu
           <div className="shrink-0">
             <button
               onClick={onOpenResume}
-              className="min-h-[40px] px-4 py-2 text-xs font-mono uppercase tracking-wider text-[#111111] bg-[#FBFBFA] hover:bg-[#F7F6F3] active:scale-[0.98] border border-[#EAEAEA] rounded-[4px] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
+              className="min-h-[40px] px-4 py-2 text-xs font-mono uppercase tracking-wider text-[var(--ink-primary)] bg-[var(--bg-canvas)] hover:bg-[var(--bg-subtle)] active:scale-[0.98] border border-[var(--border-color)] rounded-[4px] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ink-primary)]"
             >
               Curriculum Vitae (PDF)
             </button>
@@ -61,7 +61,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResu
         <div 
           role="tablist" 
           aria-label="Experience and credentials tabs"
-          className="flex items-center gap-2 border-b border-[#EAEAEA] mb-12"
+          className="flex items-center gap-2 border-b border-[var(--border-color)] mb-12"
         >
           {tabs.map((tab, idx) => (
             <React.Fragment key={tab.key}>
@@ -76,8 +76,8 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResu
                 onKeyDown={(e) => handleTabKeyDown(e, idx)}
                 className={`min-h-[44px] pb-3 text-xs font-mono uppercase tracking-wider border-b-2 transition-all cursor-pointer flex items-center ${
                   activeTab === tab.key
-                    ? 'border-[#111111] text-[#111111] font-medium'
-                    : 'border-transparent text-[#787774] hover:text-[#111111]'
+                    ? 'border-[var(--ink-primary)] text-[var(--ink-primary)] font-medium'
+                    : 'border-transparent text-[var(--ink-muted)] hover:text-[var(--ink-primary)]'
                 }`}
               >
                 {tab.label}
@@ -92,7 +92,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResu
             id="panel-timeline"
             role="tabpanel"
             aria-labelledby="tab-timeline"
-            className="divide-y divide-[#EAEAEA] focus:outline-none"
+            className="divide-y divide-[var(--border-color)] focus:outline-none"
             tabIndex={0}
           >
             {CAREER_HISTORY.map((exp, idx) => (
@@ -101,13 +101,13 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResu
                 className="py-8 first:pt-0 last:pb-0 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start"
               >
                 <div className="md:col-span-4 space-y-1">
-                  <div className="text-xs font-mono text-[#787774]">
+                  <div className="text-xs font-mono text-[var(--ink-muted)]">
                     {exp.period}
                   </div>
-                  <h3 className="text-base font-semibold text-[#111111]">
+                  <h3 className="text-base font-semibold text-[var(--ink-primary)]">
                     {exp.role}
                   </h3>
-                  <div className="text-xs text-[#787774] font-mono">
+                  <div className="text-xs text-[var(--ink-muted)] font-mono">
                     {exp.organization} · {exp.location}
                   </div>
                 </div>
@@ -115,8 +115,8 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResu
                 <div className="md:col-span-8">
                   <ul className="space-y-2">
                     {exp.highlights.map((bullet, bIdx) => (
-                      <li key={bIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#2F3437] leading-[1.6]">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#111111] shrink-0 mt-2" aria-hidden="true" />
+                      <li key={bIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[var(--ink-secondary)] leading-[1.6]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--ink-primary)] shrink-0 mt-2" aria-hidden="true" />
                         <span>{bullet}</span>
                       </li>
                     ))}
@@ -136,17 +136,17 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResu
             className="grid grid-cols-1 md:grid-cols-2 gap-8 focus:outline-none"
             tabIndex={0}
           >
-            <div className="bg-[#FFFFFF] border border-[#EAEAEA] rounded-[8px] p-6 sm:p-8 space-y-5">
-              <h3 className="font-serif text-xl font-medium text-[#111111] pb-2 border-b border-[#EAEAEA]">
+            <div className="bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-[8px] p-6 sm:p-8 space-y-5">
+              <h3 className="font-sans text-xl font-medium text-[var(--ink-primary)] pb-2 border-b border-[var(--border-color)]">
                 Certifications &amp; Clearances
               </h3>
               <div className="space-y-4">
                 {MOLLY_PROFILE.certifications.map((cert, i) => (
                   <div key={i} className="space-y-1">
-                    <div className="text-sm font-semibold text-[#111111]">
+                    <div className="text-sm font-semibold text-[var(--ink-primary)]">
                       {cert.name}
                     </div>
-                    <div className="text-xs text-[#787774] font-mono flex items-center gap-2">
+                    <div className="text-xs text-[var(--ink-muted)] font-mono flex items-center gap-2">
                       <span>{cert.issuer}</span>
                       <span className="text-[#D0D0CE]" aria-hidden="true">/</span>
                       <span className="text-[#346538] font-medium">{cert.status}</span>
@@ -156,21 +156,21 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResu
               </div>
             </div>
 
-            <div className="bg-[#FFFFFF] border border-[#EAEAEA] rounded-[8px] p-6 sm:p-8 space-y-5">
-              <h3 className="font-serif text-xl font-medium text-[#111111] pb-2 border-b border-[#EAEAEA]">
+            <div className="bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-[8px] p-6 sm:p-8 space-y-5">
+              <h3 className="font-sans text-xl font-medium text-[var(--ink-primary)] pb-2 border-b border-[var(--border-color)]">
                 Academic Degrees
               </h3>
               <div className="space-y-4">
                 {MOLLY_PROFILE.education.map((edu, i) => (
                   <div key={i} className="space-y-1">
-                    <div className="text-sm font-semibold text-[#111111]">
+                    <div className="text-sm font-semibold text-[var(--ink-primary)]">
                       {edu.degree}
                     </div>
-                    <div className="text-xs text-[#787774]">
+                    <div className="text-xs text-[var(--ink-muted)]">
                       {edu.institution} · {edu.location} ({edu.year})
                     </div>
                     {edu.notes && (
-                      <div className="text-xs text-[#787774] font-mono mt-0.5">
+                      <div className="text-xs text-[var(--ink-muted)] font-mono mt-0.5">
                         {edu.notes}
                       </div>
                     )}
@@ -190,16 +190,16 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenResu
             className="space-y-6 focus:outline-none"
             tabIndex={0}
           >
-            <h3 className="font-serif text-xl font-medium text-[#111111] pb-2 border-b border-[#EAEAEA]">
+            <h3 className="font-sans text-xl font-medium text-[var(--ink-primary)] pb-2 border-b border-[var(--border-color)]">
               Laboratory &amp; Department of Energy Recognition
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {AWARDS.map((award, i) => (
-                <div key={i} className="p-5 bg-[#FFFFFF] border border-[#EAEAEA] rounded-[8px] space-y-1.5 transition-all duration-200 hover:shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-                  <div className="text-sm font-semibold text-[#111111]">
+                <div key={i} className="p-5 bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-[8px] space-y-1.5 transition-all duration-200 hover:shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+                  <div className="text-sm font-semibold text-[var(--ink-primary)]">
                     {award.title}
                   </div>
-                  <div className="text-xs text-[#787774]">
+                  <div className="text-xs text-[var(--ink-muted)]">
                     {award.organization}
                   </div>
                   <div className="text-xs font-mono font-medium text-[#956400]">
